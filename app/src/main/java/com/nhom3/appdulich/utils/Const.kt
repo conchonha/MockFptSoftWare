@@ -5,4 +5,5 @@ object Const {
     const val ID_NOTIFICATION = 10
     const val BASE_URL = ""
     const val NAME_SHARE_PREFS = "APP_DU_LICH"
+    const val APP_DATABASE = "PlaceDatabase"
 }

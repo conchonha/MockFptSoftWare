@@ -1,6 +1,6 @@
 package com.nhom3.appdulich.di
 
-import com.nhom3.appdulich.service.ApiServices
+import com.nhom3.appdulich.core.service.ApiServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

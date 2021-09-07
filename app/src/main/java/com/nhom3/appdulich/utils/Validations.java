@@ -12,7 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validations {
+public class Validations{
     public static boolean isEmailValid(String email) {
         String regExpn =
                 "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
