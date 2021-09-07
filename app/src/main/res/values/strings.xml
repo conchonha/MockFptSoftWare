@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppDulich</string>
+    <string name="lbl_loading">Loading</string>
+    <string name="btn_ok">Ok</string>
+    <string name="channel_name">app du lich</string>
+    <string name="lbl_hello_app">"Welcome to our app "</string>
+</resources>
