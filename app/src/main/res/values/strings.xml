@@ -4,4 +4,20 @@
     <string name="btn_ok">Ok</string>
     <string name="channel_name">app du lich</string>
     <string name="lbl_hello_app">"Welcome to our app "</string>
+    <string name="lbl_wellcome">Welcome to apps</string>
+    <string name="lbl_login">LOGIN</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="lbl_forgot_password">Forgot Password</string>
+    <string name="lbl_register">New User? Register Now</string>
+    <string name="lbl_register1">REGISTER</string>
+    <string name="hint_name">Name</string>
+    <string name="btn_register">Register</string>
+    <string name="lbl_you_have_account">You already have an account ?</string>
+    <string name="btn_verify">Verify account</string>
+    <string name="btn_verify_1">This proves that the account really belongs to you</string>
+    <string name="btn_verify_2">Confirm the code provided in your email.xxx.xxx</string>
+    <string name="hint_insert_code">Insert code</string>
+    <string name="btn_send">Send</string>
 </resources>

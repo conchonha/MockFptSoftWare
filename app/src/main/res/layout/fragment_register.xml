@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/headerRegister"
+            layout="@layout/layout_header_account"
+            app:title='@{@string/lbl_register1}'/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewBottom"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                style="@style/Edittext"
+                android:autofillHints="@string/hint_name"
+                android:drawableStart="@drawable/ic_baseline_person_add_24"
+                android:hint="@string/hint_name"
+                android:inputType="text" />
+
+            <EditText
+                style="@style/Edittext"
+                android:autofillHints="@string/hint_email"
+                android:drawableStart="@drawable/ic_email"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                style="@style/Edittext"
+                android:autofillHints="@string/hint_password"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                style="@style/Button"
+                android:text="@string/btn_register" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:gravity="center">
+
+            <TextView
+                style="@style/Textview_Login"
+                android:text="@string/lbl_you_have_account"
+                android:textColor="@color/black" />
+
+            <TextView
+                style="@style/Textview_Login"
+                android:text="@string/btn_login"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

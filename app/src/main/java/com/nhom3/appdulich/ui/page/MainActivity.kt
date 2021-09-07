@@ -1,17 +1,14 @@
 package com.nhom3.appdulich.ui.page
 
-import com.nhom3.appdulich.base.BaseActivity
-import com.nhom3.appdulich.databinding.ActivityMainBinding
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.nhom3.appdulich.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>() {
-    override fun listenerViewModel() {
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
     }
-
-    override fun onInit() {
-
-    }
-
-    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 }
