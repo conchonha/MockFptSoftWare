@@ -1,7 +1,5 @@
-package com.example.sangtb_advanandroid_day1.di
+package com.nhom3.appdulich.di
 
-import com.nhom3.appdulich.di.IOCoroutineScope
-import com.nhom3.appdulich.di.MainCoroutineScope
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +13,10 @@ import kotlinx.coroutines.SupervisorJob
 class CoroutineModule {
     @IOCoroutineScope
     @Provides
-    fun provideIOCoroutineScope() : CoroutineScope = CoroutineScope(SupervisorJob()+Dispatchers.IO)
+    fun provideIOCoroutineScope(): CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     @MainCoroutineScope
     @Provides
-    fun provideMainCoroutineScope() : CoroutineScope = CoroutineScope(SupervisorJob()+Dispatchers.Main)
+    fun provideMainCoroutineScope(): CoroutineScope =
+        CoroutineScope(SupervisorJob() + Dispatchers.Main)
 }

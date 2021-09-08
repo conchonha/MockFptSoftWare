@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 abstract class BaseRepository {
-    suspend fun <T> callData(api: suspend ()->T) : DataResponse<out T> {
+    suspend fun <T> callData(api: suspend ()->T) : DataResponse<T> {
         return withContext(Dispatchers.IO){
             try {
                 DataResponse.Success(api.invoke())

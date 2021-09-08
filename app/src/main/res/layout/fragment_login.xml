@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nhom3.appdulich.viewmodel.LoginViewModel" />
+    </data>
+
+    <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,22 +26,29 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/edtEmail"
                 style="@style/Edittext"
                 android:autofillHints="@string/hint_email"
                 android:drawableStart="@drawable/ic_email"
                 android:hint="@string/hint_email"
-                android:inputType="textEmailAddress" />
+                checkError='@{""}'
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.email}" />
 
             <EditText
+                android:id="@+id/edtPassword"
                 style="@style/Edittext"
+                checkError='@{""}'
                 android:autofillHints="@string/hint_password"
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:hint="@string/hint_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
                 style="@style/Button"
+                android:onClick="@{()->viewModel.login()}"
                 android:text="@string/btn_login" />
 
             <TextView
@@ -46,9 +61,12 @@
             <TextView
                 android:id="@+id/btRegister"
                 style="@style/Textview_Login"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_marginTop="@dimen/_30dp"
                 android:text="@string/lbl_register"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:focusable="true" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

@@ -9,8 +9,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Notification @Inject constructor(@ApplicationContext private val context: Context){
-    fun createNotification(content : String): Notification {
+class Notification @Inject constructor(@ApplicationContext private val context: Context) {
+    fun createNotification(content: String): Notification {
         val notification = NotificationCompat.Builder(context, Const.CHANEL_ID).apply {
             setContentTitle(context.getString(R.string.app_name))
             setContentText(content)

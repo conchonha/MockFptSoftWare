@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.nhom3.appdulich.viewmodel.RegisterViewModel" />
+    </data>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/headerRegister"
@@ -19,13 +24,19 @@
 
             <EditText
                 style="@style/Edittext"
+                android:id="@+id/edtName"
                 android:autofillHints="@string/hint_name"
+                checkError='@{""}'
+                android:text="@={viewModel.name}"
                 android:drawableStart="@drawable/ic_baseline_person_add_24"
                 android:hint="@string/hint_name"
                 android:inputType="text" />
 
             <EditText
                 style="@style/Edittext"
+                android:id="@+id/edtEmail"
+                checkError='@{""}'
+                android:text="@={viewModel.email}"
                 android:autofillHints="@string/hint_email"
                 android:drawableStart="@drawable/ic_email"
                 android:hint="@string/hint_email"
@@ -33,6 +44,9 @@
 
             <EditText
                 style="@style/Edittext"
+                android:id="@+id/edtPassword"
+                checkError='@{""}'
+                android:text="@={viewModel.password}"
                 android:autofillHints="@string/hint_password"
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:hint="@string/hint_password"
@@ -41,6 +55,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
                 style="@style/Button"
+                android:onClick="@{()->viewModel.register()}"
                 android:text="@string/btn_register" />
         </LinearLayout>
 
@@ -57,7 +72,9 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/txtBack"
                 style="@style/Textview_Login"
+                android:layout_height="match_parent"
                 android:text="@string/btn_login"
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>

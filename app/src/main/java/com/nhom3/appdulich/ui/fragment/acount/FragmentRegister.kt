@@ -24,5 +24,10 @@ class FragmentRegister : BaseFragment<FragmentRegisterBinding>() {
     }
 
     override fun onInit() {
+        onClickView()
+    }
+
+    private fun onClickView() {
+        binding.txtBack.setOnClickListener { requireActivity().onBackPressed() }
     }
 }

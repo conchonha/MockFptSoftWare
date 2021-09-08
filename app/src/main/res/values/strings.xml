@@ -40,4 +40,9 @@
     <string name="hint_new_password">New password</string>
     <string name="lbl_new_password">New Password</string>
     <string name="lbl_agree">Agree</string>
+    <string name="lbl_error_email">Email invalif</string>
+    <string name="lbl_error_password">Password invalid</string>
+    <string name="lbl_error_phone">Phone invalid</string>
+    <string name="lbl_error_name">Name invalid</string>
+    <string name="lbl_error">Error</string>
 </resources>

@@ -4,10 +4,9 @@ import android.app.Dialog
 import android.app.NotificationManager
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Build
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.nhom3.appdulich.R
+import com.nhom3.appdulich.app.MyApplication
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -16,13 +15,13 @@ import javax.inject.Singleton
 
 @Singleton
 class Helpers @Inject constructor(
-    @ApplicationContext private val _context : Context,
-    private val _notification : Notification
-){
-    private var _dialogLoading : Dialog? = null
+    @ApplicationContext private val _context: Context,
+    private val _notification: Notification
+) {
+    private var _dialogLoading: Dialog? = null
 
-    fun showAlertDialog(title : String, msg: String) {
-        androidx.appcompat.app.AlertDialog.Builder(_context).apply {
+    fun showAlertDialog(title: String? = _context.getString(R.string.lbl_error), msg: String,context: Context) {
+        androidx.appcompat.app.AlertDialog.Builder(context).apply {
             setTitle(title)
             setMessage(msg)
             setIcon(R.mipmap.ic_launcher)
@@ -33,12 +32,12 @@ class Helpers @Inject constructor(
     }
 
 
-    fun showProgressLoading() {
+    fun showProgressLoading(context: Context) {
         if (_dialogLoading?.isShowing == true) {
             _dialogLoading?.dismiss()
             _dialogLoading = null
         }
-        _dialogLoading = Dialog(_context).apply {
+        _dialogLoading = Dialog(context).apply {
             setContentView(R.layout.progress)
             setCancelable(false)
             show()
@@ -63,10 +62,10 @@ class Helpers @Inject constructor(
     fun roundOffDecimal(number: Double): Double {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.FLOOR
-        return df.format(number).replace(",",".").toDouble()
+        return df.format(number).replace(",", ".").toDouble()
     }
 
-    fun showNotification(str : String) {
+    fun showNotification(str: String) {
         val manager = _context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(Const.ID_NOTIFICATION, _notification.createNotification(str))
     }

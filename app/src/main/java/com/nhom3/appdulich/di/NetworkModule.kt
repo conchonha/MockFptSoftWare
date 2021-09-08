@@ -1,6 +1,9 @@
 package com.nhom3.appdulich.di
 
 import com.nhom3.appdulich.core.service.ApiServices
+import com.nhom3.appdulich.repositories.AccountRepository
+import com.nhom3.appdulich.utils.Const
+import com.nhom3.appdulich.utils.SharePrefs
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,26 +18,24 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-    private val BASE_URL = ""
-
     @Singleton
     @Provides
-    fun providesHttpLoggingInterceptor() : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+    fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) : OkHttpClient =
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
     @Provides
     @Singleton
-    fun provideRetrofit() : Retrofit {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(Const.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
@@ -42,7 +43,14 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiServices(retrofit: Retrofit) : ApiServices {
+    fun provideApiServices(retrofit: Retrofit): ApiServices {
         return retrofit.create(ApiServices::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideAccountRepository(
+        apiServices: ApiServices,
+        sharePrefs: SharePrefs
+    ): AccountRepository = AccountRepository(apiServices, sharePrefs)
 }
