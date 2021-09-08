@@ -20,4 +20,24 @@
     <string name="btn_verify_2">Confirm the code provided in your email.xxx.xxx</string>
     <string name="hint_insert_code">Insert code</string>
     <string name="btn_send">Send</string>
+    <string name="lbl_avatar">Avatar</string>
+    <string name="lbl_user_name">User name</string>
+    <string name="lbl_info">Information</string>
+    <string name="lbl_email">Email</string>
+    <string name="lbl_phone">Phone</string>
+    <string name="lbl_age">Age</string>
+    <string name="lbl_gender">Gender</string>
+    <string name="lbl_update">Update</string>
+    <string name="lbl_my_profile">My Profile</string>
+    <string name="lbl_change_password">Change Password</string>
+    <string name="lbl_help_support">Help - Support</string>
+    <string name="lbl_about">About</string>
+    <string name="lbl_setting">Setting</string>
+    <string name="lbl_logout">Logout</string>
+    <string name="lbl_verify_account">Verify Account</string>
+    <string name="lbl_close">Close</string>
+    <string name="hint_old_password">Old password</string>
+    <string name="hint_new_password">New password</string>
+    <string name="lbl_new_password">New Password</string>
+    <string name="lbl_agree">Agree</string>
 </resources>
