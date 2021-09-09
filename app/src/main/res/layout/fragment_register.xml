@@ -53,9 +53,8 @@
                 android:inputType="textPassword" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegister"
                 style="@style/Button"
-                android:onClick="@{()->viewModel.register()}"
                 android:text="@string/btn_register" />
         </LinearLayout>
 

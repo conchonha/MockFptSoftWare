@@ -48,7 +48,6 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
                 style="@style/Button"
-                android:onClick="@{()->viewModel.login()}"
                 android:text="@string/btn_login" />
 
             <TextView
@@ -59,7 +58,7 @@
                 android:textColor="@color/colorPrimary" />
 
             <TextView
-                android:id="@+id/btRegister"
+                android:id="@+id/txtRegister"
                 style="@style/Textview_Login"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"

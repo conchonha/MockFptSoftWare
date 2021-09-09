@@ -45,4 +45,5 @@
     <string name="lbl_error_phone">Phone invalid</string>
     <string name="lbl_error_name">Name invalid</string>
     <string name="lbl_error">Error</string>
+    <string name="lbl_error_verify_code">Incorrect code</string>
 </resources>

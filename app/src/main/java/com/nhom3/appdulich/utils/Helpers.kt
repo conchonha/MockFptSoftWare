@@ -4,9 +4,11 @@ import android.app.Dialog
 import android.app.NotificationManager
 import android.content.Context
 import android.net.ConnectivityManager
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.navigation.Navigation
 import com.nhom3.appdulich.R
-import com.nhom3.appdulich.app.MyApplication
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -20,7 +22,11 @@ class Helpers @Inject constructor(
 ) {
     private var _dialogLoading: Dialog? = null
 
-    fun showAlertDialog(title: String? = _context.getString(R.string.lbl_error), msg: String,context: Context) {
+    fun showAlertDialog(
+        title: String? = _context.getString(R.string.lbl_error),
+        msg: String,
+        context: Context
+    ) {
         androidx.appcompat.app.AlertDialog.Builder(context).apply {
             setTitle(title)
             setMessage(msg)
@@ -69,4 +75,8 @@ class Helpers @Inject constructor(
         val manager = _context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(Const.ID_NOTIFICATION, _notification.createNotification(str))
     }
+}
+
+fun View.navigate(action: Int,bundle: Bundle? = null) {
+    Navigation.findNavController(this).navigate(action,bundle)
 }
