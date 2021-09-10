@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/fragmentLogin">
+    app:startDestination="@id/fragmentVerifyAccount">
 
     <fragment
         android:id="@+id/fragmentSplash"
         android:name="com.nhom3.appdulich.ui.fragment.splash.FragmentSplash"
         tools:layout="@layout/fragment_splash"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentSplash" >
         <action
             android:id="@+id/action_fragmentSplash_to_fragmentIntroduce"
@@ -18,6 +20,8 @@
         android:id="@+id/fragmentIntroduce"
         android:name="com.nhom3.appdulich.ui.fragment.introduce.FragmentIntroduce"
         tools:layout="@layout/fragment_introduce"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentIntroduce" >
         <action
             android:id="@+id/action_fragmentIntroduce_to_fragmentLogin"
@@ -27,6 +31,8 @@
         android:id="@+id/fragmentLogin"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentLogin"
         tools:layout="@layout/fragment_login"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentLogin" >
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
@@ -42,31 +48,47 @@
         android:id="@+id/fragmentRegister"
         tools:layout="@layout/fragment_register"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentRegister"
-        android:label="FragmentRegister" />
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        android:label="FragmentRegister" >
+        <action
+            android:id="@+id/action_fragmentRegister_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentChangePassword"
         tools:layout="@layout/fragment_change_password"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentChangePassword"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentForgotPassword" />
     <fragment
         android:id="@+id/fragmentHome"
         tools:layout="@layout/fragment_home"
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentHome" />
     <fragment
         android:id="@+id/fragmentFavorite"
         tools:layout="@layout/fragment_favorite"
         android:name="com.nhom3.appdulich.ui.fragment.favorite.FragmentFavorite"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentFavorite" />
     <fragment
         android:id="@+id/fragmentSearch"
         tools:layout="@layout/fragment_search"
         android:name="com.nhom3.appdulich.ui.fragment.search.FragmentSearch"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentSearch" />
     <fragment
         android:id="@+id/fragmentAcount"
         tools:layout="@layout/fragment_account"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentAccount"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentAcount" >
         <action
             android:id="@+id/action_fragmentAcount_to_fragmentMyProfile"
@@ -78,16 +100,22 @@
     <fragment
         android:id="@+id/fragmentMap"
         android:name="com.nhom3.appdulich.ui.fragment.map.FragmentMap"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentMap" />
     <fragment
         tools:layout="@layout/fragment_profile"
         android:id="@+id/fragmentMyProfile"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentMyProfile"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentMyProfile" />
     <fragment
         tools:layout="@layout/fragment_verify_account"
         android:id="@+id/fragmentVerifyAccount"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentVerifyAccount"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentVerifyAccount" >
         <action
             android:id="@+id/action_fragmentVerifyAccount_to_fragmentNewPassword"
@@ -97,5 +125,9 @@
         android:id="@+id/fragmentNewPassword"
         tools:layout="@layout/fragment_new_password"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentNewPassword"
-        android:label="FragmentNewPassword" />
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        android:label="FragmentNewPassword"
+        app:popUpTo="@id/fragmentLogin"
+        app:popUpToInclusive="true"/>
 </navigation>

@@ -1,7 +1,60 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
+import com.nhom3.appdulich.base.BaseFragment
+import com.nhom3.appdulich.databinding.FragmentNewPasswordBinding
+import com.nhom3.appdulich.viewmodel.LoginViewModel
 
-class FragmentNewPassword : Fragment(R.layout.fragment_new_password) {
+class FragmentNewPassword : BaseFragment<FragmentNewPasswordBinding>(), View.OnClickListener {
+    private val _viewModel by activityViewModels<LoginViewModel>()
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentNewPasswordBinding =
+        DataBindingUtil.inflate(layoutInflater, R.layout.fragment_new_password, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = _viewModel
+        binding.lifecycleOwner = this
+    }
+
+    override fun listenerViewModel() {
+        _viewModel.showError = {
+            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.dismissProgress()
+        }
+
+        _viewModel.loadingDialog = {
+            helpers.showProgressLoading(requireContext())
+        }
+    }
+
+    override fun onInit() {
+        onClickView()
+    }
+
+    private fun onClickView() {
+        binding.btnAgree.setOnClickListener(this)
+        binding.imgBack.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btnAgree -> _viewModel.newPassword {
+                helpers.dismissProgress()
+                helpers.showToast(getString(R.string.lbl_update_password_success))
+                requireActivity().onBackPressed()
+            }
+            R.id.imgBack -> requireActivity().onBackPressed()
+        }
+    }
 }

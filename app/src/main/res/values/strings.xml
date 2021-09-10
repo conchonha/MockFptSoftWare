@@ -46,4 +46,7 @@
     <string name="lbl_error_name">Name invalid</string>
     <string name="lbl_error">Error</string>
     <string name="lbl_error_verify_code">Incorrect code</string>
+    <string name="lbl_error_confirm_pass">confirm password must be the same as the password</string>
+    <string name="lbl_account_error">"Malformed account "</string>
+    <string name="lbl_update_password_success">Update password success</string>
 </resources>

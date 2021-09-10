@@ -14,11 +14,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
             android:background="@color/colorPrimary"
-            android:title="@string/lbl_verify_account"
             android:titleTextColor="@color/white" />
 
         <androidx.cardview.widget.CardView

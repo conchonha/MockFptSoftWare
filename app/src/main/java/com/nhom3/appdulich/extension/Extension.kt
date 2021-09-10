@@ -20,3 +20,12 @@ fun checkError(editText: EditText, str: String) {
     }
 }
 
+@BindingAdapter("confirm_password")
+fun confirmPassword(editText: EditText, str: String) {
+    val validation = Validations(editText.context)
+
+    editText.doAfterTextChanged {
+        editText.error = validation.isConfirmPass(it.toString(), str)
+    }
+}
+

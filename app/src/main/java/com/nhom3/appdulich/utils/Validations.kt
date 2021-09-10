@@ -86,5 +86,12 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
         inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
     }
 
+    fun isConfirmPass(toString: String, str: String): String? {
+        if(toString == str){
+            return null
+        }
+        return  context.getString(R.string.lbl_error_confirm_pass)
+    }
+
 }
 

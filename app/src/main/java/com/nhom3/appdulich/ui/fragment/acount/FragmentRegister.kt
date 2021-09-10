@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentRegisterBinding
+import com.nhom3.appdulich.utils.navigate
 import com.nhom3.appdulich.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,8 +58,8 @@ class FragmentRegister : BaseFragment<FragmentRegisterBinding>(), View.OnClickLi
         when (v?.id) {
             R.id.txtBack -> requireActivity().onBackPressed()
             R.id.btnRegister -> _viewModel.register {
-                Log.d("AAA", "onClick: Success register")
                 helpers.dismissProgress()
+                requireView().navigate(R.id.action_fragmentRegister_to_fragmentHome)
             }
         }
     }

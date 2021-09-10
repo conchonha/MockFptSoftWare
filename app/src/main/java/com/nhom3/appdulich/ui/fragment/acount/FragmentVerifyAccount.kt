@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
@@ -38,7 +39,26 @@ class FragmentVerifyAccount : BaseFragment<FragmentVerifyAccountBinding>(), View
     }
 
     override fun onInit() {
+        initView()
         onClickView()
+    }
+
+    private fun initView() {
+        val appCompatActivity = (requireActivity() as AppCompatActivity)
+        appCompatActivity.apply {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.apply {
+                title = getString(R.string.lbl_verify_account)
+                titleColor = getColor(R.color.white)
+                setDisplayHomeAsUpEnabled(true)
+            }
+        }
+        binding.toolbar.apply {
+            setNavigationIcon(R.drawable.ic_back)
+            setNavigationOnClickListener {
+                requireActivity().onBackPressed()
+            }
+        }
     }
 
     private fun onClickView() {

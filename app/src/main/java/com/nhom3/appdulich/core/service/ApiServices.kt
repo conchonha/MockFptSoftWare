@@ -1,6 +1,7 @@
 package com.nhom3.appdulich.core.service
 
 import com.nhom3.appdulich.data.body.LoginBody
+import com.nhom3.appdulich.data.body.NewPasswordBody
 import com.nhom3.appdulich.data.body.RegisterBody
 import com.nhom3.appdulich.data.response.account.LoginResponse
 import com.nhom3.appdulich.data.response.account.RegisterResponse
@@ -26,4 +27,9 @@ interface ApiServices {
     suspend fun checkEmail(
         @Field("email") email: String
     ): LoginResponse
+
+    @POST("rest-api/User/updatePass")
+    suspend fun newPassword(
+        @Body newPasswordBody: NewPasswordBody
+    ) : LoginResponse
 }
