@@ -76,7 +76,3 @@ class Helpers @Inject constructor(
         manager.notify(Const.ID_NOTIFICATION, _notification.createNotification(str))
     }
 }
-
-fun View.navigate(action: Int,bundle: Bundle? = null) {
-    Navigation.findNavController(this).navigate(action,bundle)
-}

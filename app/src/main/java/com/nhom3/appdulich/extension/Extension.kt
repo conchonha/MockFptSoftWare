@@ -1,8 +1,12 @@
 package com.nhom3.appdulich.extension
 
+import android.os.Bundle
+import android.view.View
 import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
+import androidx.navigation.Navigation
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.utils.Validations
 
@@ -26,6 +30,17 @@ fun confirmPassword(editText: EditText, str: String) {
 
     editText.doAfterTextChanged {
         editText.error = validation.isConfirmPass(it.toString(), str)
+    }
+}
+
+fun View.navigate(action: Int, bundle: Bundle? = null) {
+    Navigation.findNavController(this).navigate(action,bundle)
+}
+
+fun Toolbar.setUpToolbar(icon : Int? = null, onclick:()->Unit){
+    setNavigationIcon(icon ?: R.drawable.ic_back)
+    setNavigationOnClickListener {
+        onclick()
     }
 }
 

@@ -39,7 +39,7 @@ data class Account(
 
     @SerializedName("gender")
     @Expose
-    var gender: Boolean? = null,
+    var gender: String? = null,
 
     @SerializedName("id_hierarchy")
     @Expose

@@ -38,7 +38,7 @@ class AccountRepository @Inject constructor(
 
     fun checkAccount(): Boolean = _sharePrefs.checkAccount()
 
-    fun getAccount(): Account = _sharePrefs.getAccount()
+    suspend fun getAccount() = callData { _sharePrefs.getAccount() }
 
     fun saveAccount(account: Account) = _sharePrefs.saveAccount(account)
 }

@@ -1,17 +1,15 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentVerifyAccountBinding
-import com.nhom3.appdulich.utils.navigate
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,16 +42,7 @@ class FragmentVerifyAccount : BaseFragment<FragmentVerifyAccountBinding>(), View
     }
 
     private fun initView() {
-        val appCompatActivity = (requireActivity() as AppCompatActivity)
-        appCompatActivity.apply {
-            setSupportActionBar(binding.toolbar)
-            supportActionBar?.apply {
-                title = getString(R.string.lbl_verify_account)
-                titleColor = getColor(R.color.white)
-                setDisplayHomeAsUpEnabled(true)
-            }
-        }
-        binding.toolbar.apply {
+        binding.toolbar.toolbar.apply {
             setNavigationIcon(R.drawable.ic_back)
             setNavigationOnClickListener {
                 requireActivity().onBackPressed()

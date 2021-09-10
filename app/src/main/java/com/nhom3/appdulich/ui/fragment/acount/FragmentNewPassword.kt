@@ -9,8 +9,11 @@ import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentNewPasswordBinding
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FragmentNewPassword : BaseFragment<FragmentNewPasswordBinding>(), View.OnClickListener {
     private val _viewModel by activityViewModels<LoginViewModel>()
 
@@ -52,7 +55,7 @@ class FragmentNewPassword : BaseFragment<FragmentNewPasswordBinding>(), View.OnC
             R.id.btnAgree -> _viewModel.newPassword {
                 helpers.dismissProgress()
                 helpers.showToast(getString(R.string.lbl_update_password_success))
-                requireActivity().onBackPressed()
+                requireView().navigate(R.id.action_fragmentNewPassword_to_fragmentLogin)
             }
             R.id.imgBack -> requireActivity().onBackPressed()
         }

@@ -14,12 +14,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+        <include layout="@layout/layout_toolbar"
             android:id="@+id/toolbar"
-            android:background="@color/colorPrimary"
-            android:titleTextColor="@color/white" />
+            app:title='@{@string/lbl_my_profile}'/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

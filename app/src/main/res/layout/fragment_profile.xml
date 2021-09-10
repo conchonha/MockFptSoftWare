@@ -2,10 +2,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nhom3.appdulich.viewmodel.ProfileViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:title='@{@string/lbl_my_profile}' />
 
         <androidx.cardview.widget.CardView
             style="@style/CardViewProfile"
@@ -15,14 +27,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <TextView
-                    style="@style/TextContent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="@dimen/_10dp"
-                    android:text="@string/lbl_update"
-                    android:textColor="@color/purple_700"
-                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imgAvatar"
@@ -36,7 +40,7 @@
                     style="@style/TextContent"
                     android:layout_below="@+id/imgAvatar"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/lbl_info"
+                    android:text="@={viewModel.name}"
                     android:textColor="@color/h434343"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -51,35 +55,51 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    style="@style/TextContent"
-                    android:layout_height="@dimen/_48dp"
-                    android:layout_marginStart="@dimen/_10dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/lbl_info"
-                    android:textColor="@color/h434343"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/Textview_Login"
+                        android:layout_height="@dimen/_48dp"
+                        android:layout_marginStart="@dimen/_10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/lbl_info"
+                        android:textColor="@color/h434343" />
+
+                    <TextView
+                        style="@style/Textview_Login"
+                        android:id="@+id/txtUpdate"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="@string/lbl_update"
+                        android:textColor="@color/purple_700" />
+                </RelativeLayout>
 
                 <include layout="@layout/layout_underlined_account" />
 
                 <include
                     layout="@layout/layout_row_profile_account"
-                    app:text='@{"kk"}'
+                    app:text='@={viewModel.email}'
                     app:title='@{@string/lbl_email}' />
 
                 <include
                     layout="@layout/layout_row_profile_account"
-                    app:text='@{"kk"}'
+                    app:text='@={viewModel.phone}'
                     app:title='@{@string/lbl_phone}' />
 
                 <include
                     layout="@layout/layout_row_profile_account"
-                    app:text='@{"kk"}'
+                    app:text='@={viewModel.age}'
                     app:title='@{@string/lbl_age}' />
 
                 <include
                     layout="@layout/layout_row_profile_account"
-                    app:text='@{"kk"}'
+                    app:text='@={viewModel.gender}'
                     app:title='@{@string/lbl_gender}' />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

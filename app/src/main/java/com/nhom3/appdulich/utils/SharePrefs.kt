@@ -21,6 +21,6 @@ class SharePrefs @Inject constructor(
         return true
     }
 
-    fun getAccount(): Account =
+    suspend fun getAccount(): Account =
         Gson().fromJson(sharedPreferences.getString(Const.KEY_ACCOUNT, ""), Account::class.java)
 }

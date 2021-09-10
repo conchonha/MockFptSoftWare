@@ -48,31 +48,37 @@
                 android:padding="@dimen/_10dp">
 
                 <include
+                    android:id="@+id/rowAccountProfile"
                     layout="@layout/layout_row_account"
                     app:iconLeft='@{@drawable/ic_account}'
                     app:title='@{@string/lbl_my_profile}' />
 
                 <include
+                    android:id="@+id/rowAccountChangePass"
                     layout="@layout/layout_row_account"
                     app:iconLeft='@{@drawable/ic_change_password}'
                     app:title='@{@string/lbl_change_password}' />
 
                 <include
+                    android:id="@+id/rowAccountSupport"
                     layout="@layout/layout_row_account"
                     app:iconLeft='@{@drawable/ic_help}'
                     app:title='@{@string/lbl_help_support}' />
 
                 <include
+                    android:id="@+id/rowAccountAbout"
                     layout="@layout/layout_row_account"
                     app:iconLeft='@{@drawable/ic_about}'
                     app:title='@{@string/lbl_about}' />
 
                 <include
+                    android:id="@+id/rowAccountSetting"
                     layout="@layout/layout_row_account"
                     app:iconLeft='@{@drawable/ic_setting}'
                     app:title='@{@string/lbl_setting}' />
 
                 <include
+                    android:id="@+id/rowAccountLogout"
                     layout="@layout/layout_row_account"
                     app:iconLeft='@{@drawable/ic_logout}'
                     app:title='@{@string/lbl_logout}' />

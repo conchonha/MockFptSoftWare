@@ -3,131 +3,152 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/fragmentVerifyAccount">
+    app:startDestination="@id/fragmentAcount">
 
     <fragment
         android:id="@+id/fragmentSplash"
         android:name="com.nhom3.appdulich.ui.fragment.splash.FragmentSplash"
-        tools:layout="@layout/fragment_splash"
+        android:label="FragmentSplash"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentSplash" >
+        tools:layout="@layout/fragment_splash">
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
             android:id="@+id/action_fragmentSplash_to_fragmentIntroduce"
             app:destination="@id/fragmentIntroduce" />
     </fragment>
     <fragment
         android:id="@+id/fragmentIntroduce"
         android:name="com.nhom3.appdulich.ui.fragment.introduce.FragmentIntroduce"
-        tools:layout="@layout/fragment_introduce"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentIntroduce" >
+        android:label="FragmentIntroduce"
+        tools:layout="@layout/fragment_introduce">
         <action
             android:id="@+id/action_fragmentIntroduce_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
+            app:destination="@id/fragmentLogin"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragmentSplash"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentLogin"
-        tools:layout="@layout/fragment_login"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentLogin" >
+        android:label="FragmentLogin"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
-            app:destination="@id/fragmentRegister" />
+            app:destination="@id/fragmentRegister"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentHome"
-            app:destination="@id/fragmentHome" />
+            app:destination="@id/fragmentHome"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragmentLogin"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentVerifyAccount"
-            app:destination="@id/fragmentVerifyAccount" />
+            app:destination="@id/fragmentVerifyAccount"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
-        tools:layout="@layout/fragment_register"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentRegister"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentRegister" >
+        android:label="FragmentRegister"
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_fragmentRegister_to_fragmentHome"
-            app:destination="@id/fragmentHome" />
+            app:destination="@id/fragmentHome"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragmentLogin"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentChangePassword"
-        tools:layout="@layout/fragment_change_password"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentChangePassword"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentForgotPassword" />
+        android:label="FragmentForgotPassword"
+        tools:layout="@layout/fragment_change_password" />
     <fragment
         android:id="@+id/fragmentHome"
-        tools:layout="@layout/fragment_home"
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentHome" />
+        android:label="FragmentHome"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fragmentFavorite"
-        tools:layout="@layout/fragment_favorite"
         android:name="com.nhom3.appdulich.ui.fragment.favorite.FragmentFavorite"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentFavorite" />
+        android:label="FragmentFavorite"
+        tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/fragmentSearch"
-        tools:layout="@layout/fragment_search"
         android:name="com.nhom3.appdulich.ui.fragment.search.FragmentSearch"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentSearch" />
+        android:label="FragmentSearch"
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/fragmentAcount"
-        tools:layout="@layout/fragment_account"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentAccount"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentAcount" >
+        android:label="FragmentAcount"
+        tools:layout="@layout/fragment_account">
         <action
             android:id="@+id/action_fragmentAcount_to_fragmentMyProfile"
-            app:destination="@id/fragmentMyProfile" />
+            app:destination="@id/fragmentMyProfile"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentAcount_to_fragmentChangePassword"
-            app:destination="@id/fragmentChangePassword" />
+            app:destination="@id/fragmentChangePassword"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMap"
         android:name="com.nhom3.appdulich.ui.fragment.map.FragmentMap"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentMap" />
     <fragment
-        tools:layout="@layout/fragment_profile"
         android:id="@+id/fragmentMyProfile"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentMyProfile"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentMyProfile" />
+        android:label="FragmentMyProfile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentMyProfile_to_fragmentUpdateProfile"
+            app:destination="@id/fragmentUpdateProfile" />
+    </fragment>
     <fragment
-        tools:layout="@layout/fragment_verify_account"
         android:id="@+id/fragmentVerifyAccount"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentVerifyAccount"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        android:label="FragmentVerifyAccount" >
+        android:label="FragmentVerifyAccount"
+        tools:layout="@layout/fragment_verify_account">
         <action
             android:id="@+id/action_fragmentVerifyAccount_to_fragmentNewPassword"
-            app:destination="@id/fragmentNewPassword" />
+            app:destination="@id/fragmentNewPassword"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentNewPassword"
-        tools:layout="@layout/fragment_new_password"
         android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentNewPassword"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
         android:label="FragmentNewPassword"
-        app:popUpTo="@id/fragmentLogin"
-        app:popUpToInclusive="true"/>
+        tools:layout="@layout/fragment_new_password">
+        <action
+            android:id="@+id/action_fragmentNewPassword_to_fragmentLogin"
+            app:destination="@id/fragmentLogin"
+            app:popUpTo="@id/fragmentLogin"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentUpdateProfile"
+        android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentUpdateProfile"
+        android:label="FragmentUpdateProfile"
+        tools:layout="@layout/fragment_update_profile" >
+        <action
+            app:popUpTo="@id/fragmentUpdateProfile"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_fragmentUpdateProfile_to_fragmentMyProfile"
+            app:destination="@id/fragmentMyProfile" />
+    </fragment>
 </navigation>
