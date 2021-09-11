@@ -2,6 +2,7 @@ package com.nhom3.appdulich.utils;
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.nhom3.appdulich.R
@@ -138,6 +139,9 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
     }
 
     fun register(name: String, email: String, password: String): RegisterBody? {
+        Log.d("AAA", "isValidName: ${isValidName(name)} - $name")
+        Log.d("AAA", "isPasswordValid: ${isPasswordValid(password)} - $password")
+        Log.d("AAA", "isEmailValid: ${isEmailValid(email)} - $email")
         if (isValidName(name) == null && isPasswordValid(password) == null && isEmailValid(email) == null) {
             return RegisterBody(name, email, password)
         }
