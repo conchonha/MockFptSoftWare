@@ -1,6 +1,7 @@
 package com.nhom3.appdulich.extension
 
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import com.nhom3.appdulich.R
@@ -19,4 +20,6 @@ fun checkError(editText: EditText, str: String) {
         }
     }
 }
+
+
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_270dp"
+        android:clickable="true"
+        app:cardElevation="0dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpBannerMain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_270dp" />
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorViewBanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="50dp"
+            app:piv_animationType="worm"
+            app:piv_selectedColor="#FA0A0A"
+            app:piv_unselectedColor="#000"
+            app:piv_dynamicCount="true"
+            android:layout_gravity="bottom|center_horizontal"/>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
