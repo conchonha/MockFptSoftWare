@@ -1,10 +1,7 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -21,16 +18,7 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding>(), View.OnClickListener
     lateinit var validation: Validations
     private val _viewModel by activityViewModels<LoginViewModel>()
 
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentLoginBinding = DataBindingUtil.inflate(
-        layoutInflater,
-        R.layout.fragment_login,
-        container,
-        false
-    )
+    override fun getViewBinding() = FragmentLoginBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

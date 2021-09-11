@@ -1,10 +1,7 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -17,12 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FragmentNewPassword : BaseFragment<FragmentNewPasswordBinding>(), View.OnClickListener {
     private val _viewModel by activityViewModels<LoginViewModel>()
 
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentNewPasswordBinding =
-        DataBindingUtil.inflate(layoutInflater, R.layout.fragment_new_password, container, false)
+    override fun getViewBinding() = FragmentNewPasswordBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,21 +1,16 @@
 package com.nhom3.appdulich.core.service
 
-import com.nhom3.appdulich.data.body.LoginBody
-import com.nhom3.appdulich.data.body.NewPasswordBody
-import com.nhom3.appdulich.data.body.RegisterBody
-import com.nhom3.appdulich.data.response.account.LoginResponse
+import com.nhom3.appdulich.data.body.*
+import com.nhom3.appdulich.data.response.account.AccountResponse
 import com.nhom3.appdulich.data.response.account.RegisterResponse
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiServices {
 
     @POST("rest-api/User/login")
     suspend fun postLogin(
         @Body loginBody: LoginBody
-    ): LoginResponse
+    ): AccountResponse
 
     @POST("rest-api/User/register")
     suspend fun registerAccount(
@@ -26,10 +21,20 @@ interface ApiServices {
     @POST("rest-api/User/checkEmail")
     suspend fun checkEmail(
         @Field("email") email: String
-    ): LoginResponse
+    ): AccountResponse
 
-    @POST("rest-api/User/updatePass")
+    @PUT("rest-api/User/newPassword")
     suspend fun newPassword(
         @Body newPasswordBody: NewPasswordBody
-    ) : LoginResponse
+    ) : AccountResponse
+
+    @POST("rest-api/User/updateUser")
+    suspend fun updateProfile(
+       @Body updateProfileBody: UpdateProfileBody
+    ): AccountResponse
+
+    @PUT("rest-api/User/updatePass")
+    suspend fun changePassword(
+        @Body changePasswordBody: ChangePasswordBody
+    ) : AccountResponse
 }

@@ -66,14 +66,13 @@
             android:gravity="center">
 
             <TextView
-                style="@style/Textview_Login"
+                style="@style/TextTitle"
                 android:text="@string/lbl_you_have_account"
-                android:textColor="@color/black" />
+                />
 
             <TextView
                 android:id="@+id/txtBack"
-                style="@style/Textview_Login"
-                android:layout_height="match_parent"
+                style="@style/TextTitle"
                 android:text="@string/btn_login"
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>

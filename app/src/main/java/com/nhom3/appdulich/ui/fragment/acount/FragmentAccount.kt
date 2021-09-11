@@ -1,26 +1,33 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentAccountBinding
 import com.nhom3.appdulich.extension.navigate
+import com.nhom3.appdulich.viewmodel.SettingAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FragmentAccount : BaseFragment<FragmentAccountBinding>() {
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentAccountBinding =
-        DataBindingUtil.inflate(layoutInflater, R.layout.fragment_account, container, false)
+    private val _viewModel by activityViewModels<SettingAccountViewModel>()
+
+    override fun getViewBinding() = FragmentAccountBinding.inflate(layoutInflater)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = _viewModel
+        binding.lifecycleOwner = this
+
+        _viewModel.getAccount()
+    }
 
     override fun listenerViewModel() {
-
+        _viewModel.showError = {
+            helpers.showAlertDialog(msg = it, context = requireContext())
+        }
     }
 
     override fun onInit() {

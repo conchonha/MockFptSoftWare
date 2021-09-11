@@ -3,9 +3,7 @@ package com.nhom3.appdulich.repositories
 import com.nhom3.appdulich.base.BaseRepository
 import com.nhom3.appdulich.core.service.ApiServices
 import com.nhom3.appdulich.core.service.JavaMailAPI
-import com.nhom3.appdulich.data.body.LoginBody
-import com.nhom3.appdulich.data.body.NewPasswordBody
-import com.nhom3.appdulich.data.body.RegisterBody
+import com.nhom3.appdulich.data.body.*
 import com.nhom3.appdulich.data.model.Account
 import com.nhom3.appdulich.utils.SharePrefs
 import javax.inject.Inject
@@ -34,6 +32,14 @@ class AccountRepository @Inject constructor(
 
     suspend fun checkMailAccount(email: String) = callData {
         _api.checkEmail(email)
+    }
+
+    suspend fun updateProfile(updateProfileBody: UpdateProfileBody) = callData {
+        _api.updateProfile(updateProfileBody)
+    }
+
+    suspend fun changePassword(body: ChangePasswordBody) = callData {
+        _api.changePassword(body)
     }
 
     fun checkAccount(): Boolean = _sharePrefs.checkAccount()

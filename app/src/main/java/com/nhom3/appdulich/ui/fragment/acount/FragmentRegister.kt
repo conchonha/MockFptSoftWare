@@ -1,11 +1,7 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -18,16 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FragmentRegister : BaseFragment<FragmentRegisterBinding>(), View.OnClickListener {
     private val _viewModel by viewModels<RegisterViewModel>()
 
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentRegisterBinding = DataBindingUtil.inflate(
-        layoutInflater,
-        R.layout.fragment_register,
-        container,
-        false
-    )
+    override fun getViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

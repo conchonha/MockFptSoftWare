@@ -1,10 +1,11 @@
 package com.nhom3.appdulich.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.response.DataResponse
-import com.nhom3.appdulich.data.body.RegisterBody
 import com.nhom3.appdulich.repositories.AccountRepository
 import com.nhom3.appdulich.utils.Validations
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val _repository: AccountRepository,
-    private val _validations: Validations
+    private val _validations: Validations,
+    private val _application: Application
 ) : ViewModel() {
     var loadingDialog: (() -> Unit)? = null
     var showError: ((String) -> Unit)? = null
@@ -25,19 +27,13 @@ class RegisterViewModel @Inject constructor(
     val password = MutableLiveData("")
 
     fun register(success: () -> Unit) = viewModelScope.launch(Dispatchers.Main) {
-        if (_validations.isValidName(name.value.toString()) == null &&
-            _validations.isPasswordValid(password.value.toString()) == null &&
-            _validations.isEmailValid(email.value.toString()) == null
-        ) {
+        _validations.register(
+            name.value.toString(),
+            password.value.toString(),
+            email.value.toString()
+        )?.let {
             loadingDialog?.invoke()
-
-            val body = RegisterBody(
-                name.value.toString(),
-                email.value.toString(),
-                password.value.toString()
-            )
-
-            when (val value = _repository.register(body)) {
+            when (val value = _repository.register(it)) {
                 is DataResponse.Success -> {
                     when (value.data.statuscode) {
                         200 -> {
@@ -49,6 +45,6 @@ class RegisterViewModel @Inject constructor(
                 }
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
             }
-        }
+        } ?: showError?.invoke(_application.getString(R.string.lbl_account_error))
     }
 }

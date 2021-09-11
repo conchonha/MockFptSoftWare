@@ -1,15 +1,13 @@
 package com.nhom3.appdulich.ui.fragment.acount
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentVerifyAccountBinding
 import com.nhom3.appdulich.extension.navigate
+import com.nhom3.appdulich.extension.setUpToolbar
 import com.nhom3.appdulich.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,12 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FragmentVerifyAccount : BaseFragment<FragmentVerifyAccountBinding>(), View.OnClickListener {
     private val _viewModel by activityViewModels<LoginViewModel>()
 
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentVerifyAccountBinding =
-        DataBindingUtil.inflate(layoutInflater, R.layout.fragment_verify_account, container, false)
+    override fun getViewBinding() = FragmentVerifyAccountBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,11 +35,8 @@ class FragmentVerifyAccount : BaseFragment<FragmentVerifyAccountBinding>(), View
     }
 
     private fun initView() {
-        binding.toolbar.toolbar.apply {
-            setNavigationIcon(R.drawable.ic_back)
-            setNavigationOnClickListener {
-                requireActivity().onBackPressed()
-            }
+        binding.toolbar.toolbar.setUpToolbar {
+            requireActivity().onBackPressed()
         }
     }
 

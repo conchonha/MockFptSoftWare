@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.nhom3.appdulich.viewmodel.SettingAccountViewModel" />
+    </data>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -24,8 +30,8 @@
                 app:tint="@color/white" />
 
             <TextView
-                style="@style/TextContent"
-                android:text="@string/lbl_info"
+                style="@style/TextTitle"
+                android:text="@={viewModel.name}"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

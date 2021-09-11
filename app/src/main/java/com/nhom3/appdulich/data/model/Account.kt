@@ -35,7 +35,7 @@ data class Account(
 
     @SerializedName("age")
     @Expose
-    var age: Int? = null,
+    var age: String? = null,
 
     @SerializedName("gender")
     @Expose

@@ -19,6 +19,7 @@ fun checkError(editText: EditText, str: String) {
             R.id.edtEmail -> validation.isEmailValid(it.toString())
             R.id.edtPassword -> validation.isPasswordValid(it.toString())
             R.id.edtName -> validation.isValidName(it.toString())
+            R.id.edtPhone ->validation.isValidPhoneNumber(it.toString())
             else -> null
         }
     }

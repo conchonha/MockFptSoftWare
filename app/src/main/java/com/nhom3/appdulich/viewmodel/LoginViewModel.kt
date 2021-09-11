@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.response.DataResponse
-import com.nhom3.appdulich.data.body.LoginBody
-import com.nhom3.appdulich.data.body.NewPasswordBody
 import com.nhom3.appdulich.repositories.AccountRepository
 import com.nhom3.appdulich.utils.Validations
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,20 +31,14 @@ class LoginViewModel @Inject constructor(
     private var _verifyCode: Int? = null
 
     //new password fragment
-    val passwordNewPass = MutableLiveData("")
-    val confirmPassNewPass = MutableLiveData("")
+    val newPassword = MutableLiveData("")
+    val confirmPass = MutableLiveData("")
 
 
     fun login(success: () -> Unit) = viewModelScope.launch {
-        if (_validation.isEmailValid(email.value.toString()) == null &&
-            _validation.isPasswordValid(password.value.toString()) == null
-        ) {
+        _validation.login(email.value.toString(), password.value.toString())?.let {
             loadingDialog?.invoke()
-            val loginBody = LoginBody(
-                email.value.toString(),
-                password.value.toString()
-            )
-            when (val value = _repository.login(loginBody)) {
+            when (val value = _repository.login(it)) {
                 is DataResponse.Success -> {
                     when (value.data.statuscode) {
                         200 -> {
@@ -58,7 +50,7 @@ class LoginViewModel @Inject constructor(
                 }
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
             }
-        }
+        } ?: showError?.invoke(_context.getString(R.string.lbl_account_error))
     }
 
     fun sendVerifyMail(onSuccess: () -> Unit) = viewModelScope.launch {
@@ -109,16 +101,13 @@ class LoginViewModel @Inject constructor(
 
     //new password fragment
     fun newPassword(onSuccess: () -> Unit) = viewModelScope.launch {
-        val passwordNewPass = passwordNewPass.value.toString()
-        val confirmPass = confirmPassNewPass.value.toString()
-
-        if (_validation.isPasswordValid(passwordNewPass) == null &&
-            _validation.isConfirmPass(passwordNewPass, confirmPass) == null
-        ) {
+        _validation.newPassword(
+            newPassword.value.toString(),
+            confirmPass.value.toString(),
+            email.value.toString()
+        )?.let {
             loadingDialog?.invoke()
-            val passwordBody = NewPasswordBody(email.value.toString(), passwordNewPass)
-
-            when (val value = _repository.newPassword(passwordBody)) {
+            when (val value = _repository.newPassword(it)) {
                 is DataResponse.Success -> {
                     when (value.data.statuscode) {
                         200 -> onSuccess()
@@ -127,8 +116,6 @@ class LoginViewModel @Inject constructor(
                 }
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
             }
-            return@launch
-        }
-        showError?.invoke(_context.getString(R.string.lbl_account_error))
+        } ?: showError?.invoke(_context.getString(R.string.lbl_account_error))
     }
 }

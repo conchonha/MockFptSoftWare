@@ -52,19 +52,20 @@
 
             <TextView
                 android:id="@+id/txtForgetPass"
-                style="@style/Textview_Login"
+                style="@style/TextContent"
                 android:layout_marginTop="@dimen/_30dp"
                 android:text="@string/lbl_forgot_password"
                 android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/txtRegister"
-                style="@style/Textview_Login"
+                style="@style/TextContent"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:layout_marginTop="@dimen/_30dp"
                 android:text="@string/lbl_register"
                 android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
                 android:focusable="true" />
         </LinearLayout>
     </RelativeLayout>

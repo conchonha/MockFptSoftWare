@@ -146,7 +146,7 @@
         android:label="FragmentUpdateProfile"
         tools:layout="@layout/fragment_update_profile" >
         <action
-            app:popUpTo="@id/fragmentUpdateProfile"
+            app:popUpTo="@id/fragmentMyProfile"
             app:popUpToInclusive="true"
             android:id="@+id/action_fragmentUpdateProfile_to_fragmentMyProfile"
             app:destination="@id/fragmentMyProfile" />

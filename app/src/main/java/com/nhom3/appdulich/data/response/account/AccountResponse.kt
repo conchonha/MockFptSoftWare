@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.nhom3.appdulich.data.model.Account
 
-data class LoginResponse(
+data class AccountResponse(
     @SerializedName("message")
     @Expose
     val message: String? = null,

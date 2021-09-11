@@ -1,10 +1,12 @@
 package com.nhom3.appdulich.utils
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.NotificationManager
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.Navigation
@@ -12,6 +14,7 @@ import com.nhom3.appdulich.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -74,5 +77,27 @@ class Helpers @Inject constructor(
     fun showNotification(str: String) {
         val manager = _context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(Const.ID_NOTIFICATION, _notification.createNotification(str))
+    }
+
+    fun showDatePickerDialog(
+        context: Context,
+        action: (str: String) -> Unit
+    ) {
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val month = calendar[Calendar.MONTH]
+        val date = calendar[Calendar.DATE]
+
+        val datePickerDialog = DatePickerDialog(
+            context,
+            { _, year, month, dayOfMonth ->
+                Log.d("AAA", "showDatePickerDialog: ${"$year-${month+1}-$dayOfMonth"}")
+                action("$year-${month+1}-$dayOfMonth")
+            },
+            year,
+            month,
+            date
+        )
+        datePickerDialog.show()
     }
 }

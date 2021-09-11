@@ -5,13 +5,14 @@ import android.net.ConnectivityManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.nhom3.appdulich.R
+import com.nhom3.appdulich.data.body.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.regex.Pattern
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Validations @Inject constructor(@ApplicationContext private val context: Context){
+class Validations @Inject constructor(@ApplicationContext private val context: Context) {
     fun isEmailValid(email: String): String? {
         val regExpn = ("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
                 + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
@@ -87,11 +88,60 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
     }
 
     fun isConfirmPass(toString: String, str: String): String? {
-        if(toString == str){
+        if (toString == str) {
             return null
         }
-        return  context.getString(R.string.lbl_error_confirm_pass)
+        return context.getString(R.string.lbl_error_confirm_pass)
     }
 
+    //check validation viewmodel
+    fun changePassword(
+        email: String,
+        oldPassword: String,
+        newPassword: String
+    ): ChangePasswordBody? {
+        if (isEmailValid(email) == null && isPasswordValid(newPassword) == null && isPasswordValid(
+                oldPassword
+            ) == null
+        ) {
+            return ChangePasswordBody(email, oldPassword, newPassword)
+        }
+        return null
+    }
+
+    fun updateProfile(
+        id: String,
+        name: String,
+        email: String,
+        phone: String,
+        birthDay: String,
+        gender: String
+    ): UpdateProfileBody? {
+        if (isValidName(name) == null && isValidPhoneNumber(phone) == null) {
+            return UpdateProfileBody(id, name, email, phone, birthDay, gender)
+        }
+        return null
+    }
+
+    fun login(email: String, password: String): LoginBody? {
+        if (isEmailValid(email) == null && isPasswordValid(password) == null) {
+            return LoginBody(email, password)
+        }
+        return null
+    }
+
+    fun newPassword(newPassword: String, confirmPass: String, email: String): NewPasswordBody? {
+        if (isPasswordValid(newPassword) == null && newPassword == confirmPass) {
+            return NewPasswordBody(email, newPassword)
+        }
+        return null
+    }
+
+    fun register(name: String, email: String, password: String): RegisterBody? {
+        if (isValidName(name) == null && isPasswordValid(password) == null && isEmailValid(email) == null) {
+            return RegisterBody(name, email, password)
+        }
+        return null
+    }
 }
 
