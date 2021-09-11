@@ -1,4 +1,4 @@
-package com.nhom3.appdulich.ui.fragment.acount
+package com.nhom3.appdulich.ui.fragment.setting
 
 import android.os.Bundle
 import android.view.View

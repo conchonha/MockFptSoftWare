@@ -1,4 +1,4 @@
-package com.nhom3.appdulich.ui.fragment.acount
+package com.nhom3.appdulich.ui.fragment.setting
 
 import android.os.Bundle
 import android.view.View
@@ -48,7 +48,7 @@ class FragmentAccount : BaseFragment<FragmentAccountBinding>() {
         }
 
         binding.rowAccountAbout.relativeGroup.setOnClickListener {
-
+            requireView().navigate(R.id.action_fragmentAcount_to_fragmentAbout)
         }
 
         binding.rowAccountSetting.relativeGroup.setOnClickListener {

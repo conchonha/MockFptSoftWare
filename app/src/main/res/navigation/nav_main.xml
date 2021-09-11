@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentChangePassword"
-        android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentChangePassword"
+        android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentChangePassword"
         android:label="FragmentForgotPassword"
         tools:layout="@layout/fragment_change_password" />
     <fragment
@@ -89,7 +89,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/fragmentAcount"
-        android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentAccount"
+        android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentAccount"
         android:label="FragmentAcount"
         tools:layout="@layout/fragment_account">
         <action
@@ -102,6 +102,11 @@
             app:destination="@id/fragmentChangePassword"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentAcount_to_fragmentAbout"
+            app:destination="@id/fragmentAbout" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMap"
@@ -109,7 +114,7 @@
         android:label="FragmentMap" />
     <fragment
         android:id="@+id/fragmentMyProfile"
-        android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentMyProfile"
+        android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentMyProfile"
         android:label="FragmentMyProfile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -142,7 +147,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentUpdateProfile"
-        android:name="com.nhom3.appdulich.ui.fragment.acount.FragmentUpdateProfile"
+        android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentUpdateProfile"
         android:label="FragmentUpdateProfile"
         tools:layout="@layout/fragment_update_profile" >
         <action
@@ -151,4 +156,9 @@
             android:id="@+id/action_fragmentUpdateProfile_to_fragmentMyProfile"
             app:destination="@id/fragmentMyProfile" />
     </fragment>
+    <fragment
+        tools:layout="@layout/fragment_about"
+        android:id="@+id/fragmentAbout"
+        android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentAbout"
+        android:label="FragmentAbout" />
 </navigation>
