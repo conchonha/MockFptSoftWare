@@ -7,7 +7,7 @@ import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentNewPasswordBinding
 import com.nhom3.appdulich.extension.navigate
-import com.nhom3.appdulich.viewmodel.LoginViewModel
+import com.nhom3.appdulich.viewmodel.account.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

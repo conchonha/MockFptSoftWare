@@ -27,6 +27,7 @@ class FragmentAccount : BaseFragment<FragmentAccountBinding>() {
     override fun listenerViewModel() {
         _viewModel.showError = {
             helpers.showAlertDialog(msg = it, context = requireContext())
+            requireView().navigate(R.id.action_fragmentAcount_to_fragmentLogin)
         }
     }
 
@@ -52,11 +53,13 @@ class FragmentAccount : BaseFragment<FragmentAccountBinding>() {
         }
 
         binding.rowAccountSetting.relativeGroup.setOnClickListener {
-
+            requireView().navigate(R.id.action_fragmentAcount_to_fragmentSetting)
         }
 
         binding.rowAccountLogout.relativeGroup.setOnClickListener {
-
+            _viewModel.logout {
+                requireView().navigate(R.id.action_fragmentAcount_to_fragmentLogin)
+            }
         }
     }
 }

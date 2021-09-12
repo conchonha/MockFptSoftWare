@@ -1,10 +1,12 @@
 package com.nhom3.appdulich.utils;
 
 import android.content.Context
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.net.ConnectivityManager
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.app.ActivityCompat
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.data.body.*
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -13,7 +15,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Validations @Inject constructor(@ApplicationContext private val context: Context) {
+class Validations @Inject constructor(@ApplicationContext private val _context: Context) {
     fun isEmailValid(email: String): String? {
         val regExpn = ("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
                 + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
@@ -24,7 +26,7 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
         val inputStr: CharSequence = email
         val pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE)
         val matcher = pattern.matcher(inputStr)
-        return if (!matcher.matches()) context.getString(R.string.lbl_error_email) else null
+        return if (!matcher.matches()) _context.getString(R.string.lbl_error_email) else null
     }
 
     fun isPasswordValid(password: String): String? {
@@ -32,7 +34,7 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
         val inputStr: CharSequence = password
         val pattern = Pattern.compile(PASSWORD_PATTERN, Pattern.CASE_INSENSITIVE)
         val matcher = pattern.matcher(inputStr)
-        return if (matcher.matches()) null else context.getString(R.string.lbl_error_password)
+        return if (matcher.matches()) null else _context.getString(R.string.lbl_error_password)
     }
 
     fun isValidPhoneNumber(number: String?): String? {
@@ -47,7 +49,7 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
         val matcher3 = pattern3.matcher(number)
         return if (matcher.find() || matcher1.find() || matcher3.find()) {
             null
-        } else context.getString(R.string.lbl_error_phone)
+        } else _context.getString(R.string.lbl_error_phone)
     }
 
     fun isValidName(s: String): String? {
@@ -55,13 +57,31 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
         val pattern = Pattern.compile(validName, Pattern.CASE_INSENSITIVE)
         val matcher = pattern.matcher(s)
         return if (matcher.find() || isValidSpecialCharacters(s)) {
-            context.getString(R.string.lbl_error_name)
+            _context.getString(R.string.lbl_error_name)
         } else null
     }
 
     fun checkInternet(context: Context): Boolean {
         val connMgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return connMgr.isDefaultNetworkActive
+    }
+
+    fun isPermissionGrand(list: Array<String>): Boolean {
+        for (i in list) {
+            if (ActivityCompat.checkSelfPermission(
+                    _context,
+                    i
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun checkGpsStatus(): Boolean {
+        val locationManager = _context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
     private fun isValidSpecialCharacters(s: String?): Boolean {
@@ -92,7 +112,7 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
         if (toString == str) {
             return null
         }
-        return context.getString(R.string.lbl_error_confirm_pass)
+        return _context.getString(R.string.lbl_error_confirm_pass)
     }
 
     //check validation viewmodel
@@ -139,9 +159,6 @@ class Validations @Inject constructor(@ApplicationContext private val context: C
     }
 
     fun register(name: String, email: String, password: String): RegisterBody? {
-        Log.d("AAA", "isValidName: ${isValidName(name)} - $name")
-        Log.d("AAA", "isPasswordValid: ${isPasswordValid(password)} - $password")
-        Log.d("AAA", "isEmailValid: ${isEmailValid(email)} - $email")
         if (isValidName(name) == null && isPasswordValid(password) == null && isEmailValid(email) == null) {
             return RegisterBody(name, email, password)
         }

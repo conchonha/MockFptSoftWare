@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/fragmentAcount">
+    app:startDestination="@id/fragmentMap">
 
     <fragment
         android:id="@+id/fragmentSplash"
@@ -76,7 +76,13 @@
         android:id="@+id/fragmentHome"
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
         android:label="FragmentHome"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentHome_to_fragmentMap"
+            app:destination="@id/fragmentMap" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentFavorite"
         android:name="com.nhom3.appdulich.ui.fragment.favorite.FragmentFavorite"
@@ -107,8 +113,21 @@
             app:exitAnim="@anim/slide_out_right"
             android:id="@+id/action_fragmentAcount_to_fragmentAbout"
             app:destination="@id/fragmentAbout" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentAcount_to_fragmentSetting"
+            app:destination="@id/fragmentSetting" />
+        <action
+            app:popUpTo="@id/fragmentAcount"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentAcount_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
     </fragment>
     <fragment
+        tools:layout="@layout/fragment_map"
         android:id="@+id/fragmentMap"
         android:name="com.nhom3.appdulich.ui.fragment.map.FragmentMap"
         android:label="FragmentMap" />
@@ -161,4 +180,9 @@
         android:id="@+id/fragmentAbout"
         android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentAbout"
         android:label="FragmentAbout" />
+    <fragment
+        tools:layout="@layout/fragment_setting"
+        android:id="@+id/fragmentSetting"
+        android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentSetting"
+        android:label="FragmentSetting" />
 </navigation>

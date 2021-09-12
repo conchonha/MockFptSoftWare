@@ -47,4 +47,6 @@ class AccountRepository @Inject constructor(
     suspend fun getAccount() = callData { _sharePrefs.getAccount() }
 
     fun saveAccount(account: Account) = _sharePrefs.saveAccount(account)
+
+    fun removeAccountLocal() = _sharePrefs.removeAccount()
 }

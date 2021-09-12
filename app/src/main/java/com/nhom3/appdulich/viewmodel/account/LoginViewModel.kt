@@ -1,4 +1,4 @@
-package com.nhom3.appdulich.viewmodel
+package com.nhom3.appdulich.viewmodel.account
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData

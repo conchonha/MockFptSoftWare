@@ -4,12 +4,8 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.NotificationManager
 import android.content.Context
-import android.net.ConnectivityManager
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.navigation.Navigation
 import com.nhom3.appdulich.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.math.RoundingMode
@@ -28,13 +24,14 @@ class Helpers @Inject constructor(
     fun showAlertDialog(
         title: String? = _context.getString(R.string.lbl_error),
         msg: String,
-        context: Context
+        context: Context,
+        onClick: (()->Unit)? = null
     ) {
         androidx.appcompat.app.AlertDialog.Builder(context).apply {
             setTitle(title)
             setMessage(msg)
             setIcon(R.mipmap.ic_launcher)
-            setPositiveButton(R.string.btn_ok) { dialog, _ -> dialog.cancel() }
+            setPositiveButton(R.string.btn_ok) { dialog, _ -> onClick?.invoke() ?: dialog.cancel() }
             setCancelable(false)
             show()
         }
@@ -57,11 +54,6 @@ class Helpers @Inject constructor(
         if (_dialogLoading?.isShowing == true) {
             _dialogLoading?.dismiss()
         }
-    }
-
-    fun isNetworkConnected(): Boolean {
-        val cm = _context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return cm.isDefaultNetworkActive
     }
 
     fun showToast(message: String?) {
@@ -91,8 +83,8 @@ class Helpers @Inject constructor(
         val datePickerDialog = DatePickerDialog(
             context,
             { _, year, month, dayOfMonth ->
-                Log.d("AAA", "showDatePickerDialog: ${"$year-${month+1}-$dayOfMonth"}")
-                action("$year-${month+1}-$dayOfMonth")
+                Log.d("AAA", "showDatePickerDialog: ${"$year-${month + 1}-$dayOfMonth"}")
+                action("$year-${month + 1}-$dayOfMonth")
             },
             year,
             month,

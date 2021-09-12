@@ -23,4 +23,8 @@ class SharePrefs @Inject constructor(
 
     suspend fun getAccount(): Account =
         Gson().fromJson(sharedPreferences.getString(Const.KEY_ACCOUNT, ""), Account::class.java)
+
+    fun removeAccount(){
+        editor.remove(Const.KEY_ACCOUNT).commit()
+    }
 }

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.nhom3.appdulich.viewmodel.RegisterViewModel" />
+            type="com.nhom3.appdulich.viewmodel.account.RegisterViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

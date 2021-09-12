@@ -7,7 +7,7 @@ import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentRegisterBinding
 import com.nhom3.appdulich.extension.navigate
-import com.nhom3.appdulich.viewmodel.RegisterViewModel
+import com.nhom3.appdulich.viewmodel.account.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

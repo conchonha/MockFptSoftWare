@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     @Inject
-    lateinit var helpers : Helpers
+    lateinit var helpers: Helpers
 
-    protected lateinit var binding : VB
+    protected lateinit var binding: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,

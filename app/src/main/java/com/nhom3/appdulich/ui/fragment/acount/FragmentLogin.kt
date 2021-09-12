@@ -8,7 +8,7 @@ import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentLoginBinding
 import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.utils.Validations
-import com.nhom3.appdulich.viewmodel.LoginViewModel
+import com.nhom3.appdulich.viewmodel.account.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

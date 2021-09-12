@@ -61,4 +61,12 @@
     <string name="lbl_gir">Gir</string>
     <string name="lbl_update_profile_error">Update failed please check again</string>
     <string name="lbl_change_password_success">Change password success</string>
+    <string name="lbl_font">Font</string>
+    <string name="lbl_font_size">Font size</string>
+    <string name="lbl_get_notifications">Get notifications</string>
+    <string name="lbl_favorite_history">"Favorite history "</string>
+    <string name="lbl_icon_next">icon next</string>
+    <string name="lbl_permission">Please provide permission google service</string>
+    <string name="lbl_check_gps">Please enable gps</string>
+    <string name="lbl_location_error">please enable gps</string>
 </resources>

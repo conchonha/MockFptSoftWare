@@ -76,7 +76,12 @@ class SettingAccountViewModel @Inject constructor(
         } ?: showError?.invoke(_application.getString(R.string.lbl_update_profile_error))
     }
 
+    fun logout(onSuccess: () -> Unit){
+        _repository.removeAccountLocal()
+        onSuccess()
+    }
 
+    //fragment change password
     fun changePassword(onSuccess: () -> Unit) = viewModelScope.launch {
         _validation.changePassword(
             email.value.toString(),
