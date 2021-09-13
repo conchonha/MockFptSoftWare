@@ -2,6 +2,8 @@ package com.nhom3.appdulich.di
 
 import com.nhom3.appdulich.core.service.ApiServices
 import com.nhom3.appdulich.repositories.AccountRepository
+import com.nhom3.appdulich.repositories.MenuRepository
+import com.nhom3.appdulich.repositories.PlaceRepository
 import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.utils.SharePrefs
 import dagger.Module
@@ -53,4 +55,12 @@ class NetworkModule {
         apiServices: ApiServices,
         sharePrefs: SharePrefs
     ): AccountRepository = AccountRepository(apiServices, sharePrefs)
+
+    @Provides
+    @Singleton
+    fun providePlaceRepository(apiServices: ApiServices) = PlaceRepository(apiServices)
+
+    @Provides
+    @Singleton
+    fun provideMenuRepository(apiServices: ApiServices) = MenuRepository(apiServices)
 }

@@ -14,6 +14,7 @@
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/drawable/ic_account.xml" value="0.20625" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/drawable/ic_date.xml" value="0.13385416666666666" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/dialog_map.xml" value="0.264" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_about.xml" value="0.14375" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_account.xml" value="0.1" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_change_password.xml" value="0.2" />
@@ -23,7 +24,7 @@
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_home.xml" value="0.11354166666666667" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_introduce.xml" value="0.11354166666666667" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_login.xml" value="0.136" />
-        <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_map.xml" value="0.11354166666666667" />
+        <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_map.xml" value="0.11200000000000002" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_new_password.xml" value="0.23229166666666667" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_register.xml" value="0.10400000000000001" />
@@ -33,6 +34,8 @@
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_update_profile.xml" value="0.264" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/fragment_verify_account.xml" value="0.2" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/include_edittext.xml" value="0.23229166666666667" />
+        <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/item_array_image_map.xml" value="0.2046875" />
+        <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/item_menu_map.xml" value="0.16" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/layout_header_account.xml" value="0.176" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/layout_row_account.xml" value="0.19010416666666666" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/layout/layout_row_profile_account.xml" value="0.23229166666666667" />

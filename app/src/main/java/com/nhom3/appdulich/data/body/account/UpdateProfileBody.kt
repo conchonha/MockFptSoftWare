@@ -1,4 +1,4 @@
-package com.nhom3.appdulich.data.body
+package com.nhom3.appdulich.data.body.account
 
 data class UpdateProfileBody(
     val id: String,

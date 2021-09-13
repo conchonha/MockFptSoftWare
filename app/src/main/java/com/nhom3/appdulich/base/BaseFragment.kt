@@ -1,5 +1,6 @@
 package com.nhom3.appdulich.base
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import com.nhom3.appdulich.utils.Helpers
 import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+    protected val permissions by lazy { arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION) }
+
     @Inject
     lateinit var helpers: Helpers
 

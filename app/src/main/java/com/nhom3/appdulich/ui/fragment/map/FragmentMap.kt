@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
@@ -15,25 +17,34 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
+import com.nhom3.appdulich.data.model.Place
 import com.nhom3.appdulich.databinding.FragmentMapBinding
+import com.nhom3.appdulich.ui.adapter.map.MenuAdapter
+import com.nhom3.appdulich.ui.dialog.ShowButtonSheetDialogMap
+import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.viewmodel.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import javax.inject.Inject
 
 private const val TAG = "MAP"
 
 @AndroidEntryPoint
 @SuppressLint("MissingPermission")
-class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
+class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback,
+    SearchView.OnQueryTextListener {
+    @Inject
+    lateinit var adapterMenu: MenuAdapter
+
     private val _viewModel by viewModels<MapViewModel>()
     private lateinit var _fusedLocationClient: FusedLocationProviderClient
-    private val _permissions by lazy { arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION) }
 
-    private val resultLauncher =
+    private val _resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             checkGps()
         }
 
-    private val requestMultiplePermissions =
+    private val _requestMultiplePermissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true) {
                 checkGps()
@@ -53,22 +64,61 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
     override fun getViewBinding() = FragmentMapBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
+        _viewModel.showError = {
+            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.dismissProgress()
+        }
 
+        _viewModel.loadingDialog = {
+            helpers.showProgressLoading(requireContext())
+        }
+
+        _viewModel.getMenuAll {
+            adapterMenu.updateItems(it.toMutableList())
+            helpers.dismissProgress()
+        }
     }
 
     override fun onInit() {
+        initView()
         initMap()
         checkPermission()
+        onClickView()
+    }
+
+    private fun onClickView() {
+        binding.imgLocation.setOnClickListener {
+            findLocation()
+        }
+    }
+
+    private fun initView() {
+        binding.searchView.maxWidth = Int.MAX_VALUE
+
+        binding.recyclerMenu.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = adapterMenu
+            adapterMenu.listener = { _, item, _ ->
+                item.id?.let {
+                    _viewModel.getDataPlaceFromIdMenu(it) {
+                        helpers.dismissProgress()
+                    }
+                }
+            }
+        }
+
+        binding.searchView.setOnQueryTextListener(this)
     }
 
     // check permission find location
     private fun checkPermission() {
         Log.d(TAG, "checkPermission: ")
-        if (_viewModel.isPermissionGrand(_permissions)) {
+        if (_viewModel.isPermissionGrand(permissions)) {
             checkGps()
             return
         }
-        requestMultiplePermissions.launch(_permissions)
+        _requestMultiplePermissions.launch(permissions)
     }
 
     // check  gps
@@ -83,7 +133,7 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
             context = requireContext(),
             onClick = {
                 Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).apply {
-                    resultLauncher.launch(this)
+                    _resultLauncher.launch(this)
                 }
             }
         )
@@ -92,9 +142,14 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
     private fun findLocation() {
         Log.d(TAG, "findLocation: ")
         _fusedLocationClient.lastLocation.addOnCompleteListener { task ->
-            Log.d(TAG, "findLocation: ${task.result.latitude} - ${task.result.longitude}")
             if (task.isSuccessful) {
-
+                val place = Place(
+                    lat = task.result.latitude.toString(),
+                    lng = task.result.longitude.toString(),
+                    name = getString(R.string.lbl_my_location)
+                )
+                _viewModel.addMarker(place)
+                _viewModel.moveCamera(place)
                 return@addOnCompleteListener
             }
         }
@@ -108,5 +163,30 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap) {
         Log.d(TAG, "onMapReady: ")
+        _viewModel.map = p0
+
+        p0.setOnMarkerClickListener { marker ->
+            _viewModel.getPlaceFromName(marker.title ?: "") {
+               val dialog = ShowButtonSheetDialogMap().apply {
+                    arguments = Bundle().apply {
+                        putSerializable(Const.KEY_PLACE, it)
+                    }
+                }
+                helpers.dismissProgress()
+                dialog.show(requireActivity().supportFragmentManager, Const.TAG_DIALOG)
+            }
+            return@setOnMarkerClickListener false
+        }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        _viewModel.searchPlace(query.toString()) {
+            helpers.dismissProgress()
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        return false
     }
 }

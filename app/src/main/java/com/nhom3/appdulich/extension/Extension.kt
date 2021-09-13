@@ -3,10 +3,12 @@ package com.nhom3.appdulich.extension
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.utils.Validations
 
@@ -19,7 +21,7 @@ fun checkError(editText: EditText, str: String) {
             R.id.edtEmail -> validation.isEmailValid(it.toString())
             R.id.edtPassword -> validation.isPasswordValid(it.toString())
             R.id.edtName -> validation.isValidName(it.toString())
-            R.id.edtPhone ->validation.isValidPhoneNumber(it.toString())
+            R.id.edtPhone -> validation.isValidPhoneNumber(it.toString())
             else -> null
         }
     }
@@ -35,13 +37,19 @@ fun confirmPassword(editText: EditText, str: String) {
 }
 
 fun View.navigate(action: Int, bundle: Bundle? = null) {
-    Navigation.findNavController(this).navigate(action,bundle)
+    Navigation.findNavController(this).navigate(action, bundle)
 }
 
-fun Toolbar.setUpToolbar(icon : Int? = null, onclick:()->Unit){
+fun Toolbar.setUpToolbar(icon: Int? = null, onclick: () -> Unit) {
     setNavigationIcon(icon ?: R.drawable.ic_back)
     setNavigationOnClickListener {
         onclick()
     }
+}
+
+@BindingAdapter("setImageUrl")
+fun setUrlImage(imageView: ImageView, src: String) {
+    Glide.with(imageView.context).load(src)
+        .into(imageView)
 }
 
