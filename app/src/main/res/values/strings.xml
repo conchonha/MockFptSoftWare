@@ -46,7 +46,5 @@
     <string name="lbl_error_name">Name invalid</string>
     <string name="lbl_error">Error</string>
     <string name="lbl_error_verify_code">Incorrect code</string>
-    <string name="skip">SKIP</string>
-    <string name="next">NEXT</string>
     <string name="home">Home Page</string>
 </resources>
