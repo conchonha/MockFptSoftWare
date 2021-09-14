@@ -10,14 +10,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.tasks.CancellationTokenSource
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
-import com.nhom3.appdulich.data.model.Place
 import com.nhom3.appdulich.databinding.FragmentMapBinding
 import com.nhom3.appdulich.ui.adapter.map.MenuAdapter
 import com.nhom3.appdulich.ui.dialog.ShowButtonSheetDialogMap
@@ -26,6 +25,7 @@ import com.nhom3.appdulich.viewmodel.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
+
 
 private const val TAG = "MAP"
 
@@ -58,7 +58,7 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        _fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
     }
 
     override fun getViewBinding() = FragmentMapBinding.inflate(layoutInflater)
@@ -88,7 +88,7 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback,
 
     private fun onClickView() {
         binding.imgLocation.setOnClickListener {
-            findLocation()
+            checkGps()
         }
     }
 
@@ -142,15 +142,18 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback,
     private fun findLocation() {
         Log.d(TAG, "findLocation: ")
         _fusedLocationClient.lastLocation.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val place = Place(
-                    lat = task.result.latitude.toString(),
-                    lng = task.result.longitude.toString(),
-                    name = getString(R.string.lbl_my_location)
-                )
-                _viewModel.addMarker(place)
-                _viewModel.moveCamera(place)
+            if (task.result != null) {
+                _viewModel.findLocation(task.result)
                 return@addOnCompleteListener
+            }
+
+            helpers.showProgressLoading(requireContext())
+            _fusedLocationClient.getCurrentLocation(
+                LocationRequest.PRIORITY_NO_POWER,
+                CancellationTokenSource().token
+            ).addOnSuccessListener {
+                helpers.dismissProgress()
+                _viewModel.findLocation(it)
             }
         }
     }
@@ -167,7 +170,7 @@ class FragmentMap : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback,
 
         p0.setOnMarkerClickListener { marker ->
             _viewModel.getPlaceFromName(marker.title ?: "") {
-               val dialog = ShowButtonSheetDialogMap().apply {
+                val dialog = ShowButtonSheetDialogMap().apply {
                     arguments = Bundle().apply {
                         putSerializable(Const.KEY_PLACE, it)
                     }

@@ -1,6 +1,7 @@
 package com.nhom3.appdulich.viewmodel
 
 import android.app.Application
+import android.location.Location
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -115,5 +116,15 @@ class MapViewModel @Inject constructor(
             }
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
+    }
+
+    fun findLocation(location: Location) {
+        val place = Place(
+            lat = location.latitude.toString(),
+            lng = location.longitude.toString(),
+            name = _application.getString(R.string.lbl_my_location)
+        )
+        addMarker(place)
+        moveCamera(place)
     }
 }
