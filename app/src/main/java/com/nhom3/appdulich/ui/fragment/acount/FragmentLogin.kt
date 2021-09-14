@@ -24,7 +24,10 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding>(), View.OnClickListener
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = _viewModel
         binding.lifecycleOwner = this
-        _viewModel.checkAccount { }
+
+        _viewModel.checkAccount {
+            requireView().navigate(R.id.action_fragmentLogin_to_bottomNavigation)
+        }
     }
 
     override fun listenerViewModel() {
@@ -51,7 +54,7 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding>(), View.OnClickListener
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnLogin -> _viewModel.login {
-                requireView().navigate(R.id.action_fragmentLogin_to_fragmentHome)
+                requireView().navigate(R.id.action_fragmentLogin_to_bottomNavigation)
                 helpers.dismissProgress()
             }
             R.id.txtForgetPass -> _viewModel.sendVerifyMail {

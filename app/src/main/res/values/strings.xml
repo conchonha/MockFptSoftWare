@@ -84,4 +84,10 @@
     <string name="lbl_title_here_slide3">Title here</string>
     <string name="lbl_description_here_slide_3">Automatically saved in our\nclouds and locked</string>
     <string name="lbl_get_started">GET STARTED</string>
+    <string name="lbl_map">Google Map</string>
+    <string name="lbl_account_error_local">Can\'t find your account please login again</string>
+    <string name="lbl_home">Home</string>
+    <string name="lbl_search">Search</string>
+    <string name="lbl_favorite">Favorite</string>
+    <string name="lbl_account">Account</string>
 </resources>

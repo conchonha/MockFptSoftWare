@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/fragmentMap"
+            android:icon="@drawable/ic_map"
+            android:title="@string/lbl_map" />
+        <item
+            android:id="@+id/fragmentMyProfile"
+            android:icon="@drawable/ic_account"
+            android:title="@string/lbl_my_profile" />
+        <item
+            android:id="@+id/fragmentFavorite"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/lbl_favorite_history" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/lbl_logout" />
+    </group>
+</menu>

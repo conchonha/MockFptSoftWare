@@ -33,4 +33,6 @@
     <dimen name="_11dp">11dp</dimen>
     <dimen name="_29dp">29dp</dimen>
     <dimen name="_25dp">25dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="_70dp">70dp</dimen>
 </resources>

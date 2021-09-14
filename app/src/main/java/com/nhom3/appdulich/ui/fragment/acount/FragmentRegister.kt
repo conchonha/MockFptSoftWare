@@ -46,7 +46,7 @@ class FragmentRegister : BaseFragment<FragmentRegisterBinding>(), View.OnClickLi
             R.id.txtBack -> requireActivity().onBackPressed()
             R.id.btnRegister -> _viewModel.register {
                 helpers.dismissProgress()
-                requireView().navigate(R.id.action_fragmentRegister_to_fragmentHome)
+                requireView().navigate(R.id.action_fragmentRegister_to_bottomNavigation)
             }
         }
     }
