@@ -9,6 +9,7 @@ object Const {
     const val KEY_EMAIL = "KEY_EMAIL"
     const val KEY_VERIFY = "KEY_VERIFY"
     const val KEY_PLACE = "KEY_PLACE"
+    const val KEY_STARTED = "KEY_STARTED"
 
     const val CHANEL_ID = "CHANEL_ID"
     const val ID_NOTIFICATION = 10

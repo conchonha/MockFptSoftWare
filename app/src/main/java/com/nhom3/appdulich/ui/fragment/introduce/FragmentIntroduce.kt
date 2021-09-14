@@ -8,7 +8,6 @@ import com.nhom3.appdulich.ui.adapter.IntroduceAdapter
 class FragmentIntroduce : BaseFragment<FragmentIntroduceBinding>() {
     private val _adapter by lazy { IntroduceAdapter(childFragmentManager, lifecycle) }
 
-
     override fun getViewBinding() = FragmentIntroduceBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
