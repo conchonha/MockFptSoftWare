@@ -12,7 +12,7 @@ object JavaMailAPI {
         subject: String,
         message: String,
     ) {
-        var mSession: Session? = null
+        val session: Session
 
         //Creating properties
         val props = Properties()
@@ -25,7 +25,7 @@ object JavaMailAPI {
         props["mail.smtp.port"] = "465"
 
         //Creating a new session
-        mSession = Session.getDefaultInstance(props,
+        session = Session.getDefaultInstance(props,
             object : Authenticator() {
                 //Authenticating the password
                 override fun getPasswordAuthentication(): PasswordAuthentication {
@@ -34,7 +34,7 @@ object JavaMailAPI {
             })
 
         //Creating MimeMessage object
-        val mm = MimeMessage(mSession)
+        val mm = MimeMessage(session)
 
         //Setting sender address
         mm.setFrom(InternetAddress(Const.EMAIL))

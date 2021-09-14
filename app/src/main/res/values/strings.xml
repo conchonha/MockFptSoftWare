@@ -75,4 +75,13 @@
     <string name="lbl_directional">Directional</string>
     <string name="lbl_image">Image</string>
     <string name="lb_icon_location">icon location</string>
+    <string name="lbl_title_here">Title Here</string>
+    <string name="lbl_description_here">Description here</string>
+    <string name="lbl_header">image header</string>
+    <string name="lbl_title_here_slide2">There Is No Gain \n Without Pain</string>
+    <string name="lbl_description_here_slide_2">Continue the workout \nto get maximum result</string>
+    <string name="lbl_logo">Logo</string>
+    <string name="lbl_title_here_slide3">Title here</string>
+    <string name="lbl_description_here_slide_3">Automatically saved in our\nclouds and locked</string>
+    <string name="lbl_get_started">GET STARTED</string>
 </resources>
