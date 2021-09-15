@@ -113,4 +113,5 @@
             app:popUpTo="@id/bottomNavigation"
             app:popUpToInclusive="true"/>
     </fragment>
+
 </navigation>

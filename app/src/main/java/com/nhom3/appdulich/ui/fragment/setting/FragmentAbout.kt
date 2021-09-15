@@ -1,5 +1,7 @@
 package com.nhom3.appdulich.ui.fragment.setting
 
+import android.graphics.Bitmap
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentAboutBinding
@@ -25,7 +27,17 @@ class FragmentAbout : BaseFragment<FragmentAboutBinding>() {
 
         binding.webView.apply {
             loadUrl(Const.WEB_VIEW_URL)
-            webViewClient = WebViewClient()
+            webViewClient = object : WebViewClient(){
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    super.onPageStarted(view, url, favicon)
+                    helpers.showProgressLoading(requireContext())
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    helpers.dismissProgress()
+                }
+            }
         }
     }
 }

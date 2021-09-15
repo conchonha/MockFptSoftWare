@@ -57,7 +57,8 @@
         android:id="@+id/fragmentMap"
         android:name="com.nhom3.appdulich.ui.fragment.map.FragmentMap"
         android:label="FragmentMap"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+    </fragment>
     <fragment
         android:id="@+id/fragmentMyProfile"
         android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentMyProfile"
@@ -99,4 +100,5 @@
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
         android:label="FragmentHome" >
     </fragment>
+    <action android:id="@+id/action_global_fragmentMap" app:destination="@id/fragmentMap"/>
 </navigation>

@@ -9,7 +9,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var _navController: NavController
+    companion object{
+        lateinit var navController: NavController
+    }
+
     private lateinit var _navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +25,13 @@ class MainActivity : AppCompatActivity() {
     private fun createNavController() {
         _navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        _navController = _navHostFragment.navController
+        navController = _navHostFragment.navController
     }
 
     fun refreshCurrentFragment() {
-        val id = _navController.currentDestination?.id
-        _navController.popBackStack(id!!, true)
-        _navController.navigate(id)
+        val id = navController.currentDestination?.id
+        navController.popBackStack(id!!, true)
+        navController.navigate(id)
     }
+
 }
