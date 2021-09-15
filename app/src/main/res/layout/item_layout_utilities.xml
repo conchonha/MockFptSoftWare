@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="menu"
+            type="com.nhom3.appdulich.data.model.Menu" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_150dp"
+        android:layout_margin="@dimen/_5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="@dimen/_5dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="@dimen/_5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150dp">
+
+            <ImageView
+                android:id="@+id/imgUtilities"
+                setImageUrl="@{menu.icons}"
+                android:layout_width="@dimen/_50dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="-20dp"
+                android:contentDescription="@string/lbl_icon_menu"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/TextContent"
+                android:layout_below="@+id/imgUtilities"
+                android:layout_centerHorizontal="true"
+                android:text="@{menu.name}"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

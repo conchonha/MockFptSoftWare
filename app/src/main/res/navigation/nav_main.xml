@@ -100,5 +100,8 @@
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
         android:label="FragmentHome" >
     </fragment>
-    <action android:id="@+id/action_global_fragmentMap" app:destination="@id/fragmentMap"/>
+    <action android:id="@+id/action_global_fragmentMap"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:destination="@id/fragmentMap"/>
 </navigation>

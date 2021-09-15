@@ -90,4 +90,6 @@
     <string name="lbl_search">Search</string>
     <string name="lbl_favorite">Favorite</string>
     <string name="lbl_account">Account</string>
+    <string name="lbl_see_more">See more</string>
+    <string name="lbl_utilities">Utilities</string>
 </resources>

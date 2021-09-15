@@ -9,8 +9,11 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.BaseOnOffsetChangedListener
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.utils.Validations
+import kotlin.math.abs
 
 @BindingAdapter("checkError")
 fun checkError(editText: EditText, str: String) {
@@ -49,7 +52,19 @@ fun Toolbar.setUpToolbar(icon: Int? = null, onclick: () -> Unit) {
 
 @BindingAdapter("setImageUrl")
 fun setUrlImage(imageView: ImageView, src: String) {
-    Glide.with(imageView.context).load(src)
+    Glide.with(imageView.context).load(src).error(R.drawable.img_error).placeholder(R.drawable.img_city)
         .into(imageView)
+}
+
+fun AppBarLayout.listener(onSuccess: () -> Unit, onFail: () -> Unit) {
+    addOnOffsetChangedListener(BaseOnOffsetChangedListener<AppBarLayout> { appBarLayout, i ->
+        if (abs(i) >= appBarLayout!!.totalScrollRange) {
+            setBackgroundColor(context.getColor(R.color.colorPrimary))
+            onSuccess()
+        } else {
+            setBackgroundColor(context.getColor(R.color.alpha))
+            onFail()
+        }
+    })
 }
 

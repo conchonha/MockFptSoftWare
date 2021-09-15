@@ -23,4 +23,5 @@
     <color name="h666666">#666666</color>
     <color name="red">#FD0A0A</color>
     <color name="hFF0065">#FF0065</color>
+    <color name="alpha">#00000000</color>
 </resources>

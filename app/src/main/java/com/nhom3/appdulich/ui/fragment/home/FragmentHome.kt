@@ -1,20 +1,27 @@
 package com.nhom3.appdulich.ui.fragment.home
 
+import android.view.View.*
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.ui.setupWithNavController
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentHomeBinding
 import com.nhom3.appdulich.databinding.HeaderHomeBinding
-import com.nhom3.appdulich.extension.navigate
+import com.nhom3.appdulich.extension.listener
+import com.nhom3.appdulich.ui.adapter.home.MenuAdapter
 import com.nhom3.appdulich.ui.page.MainActivity
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 private const val TAG = "FragmentHome"
 
 @AndroidEntryPoint
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
+    @Inject
+    lateinit var menuAdapter: MenuAdapter
+
     private lateinit var _headerHomeBinding: HeaderHomeBinding
     private val _viewModel by viewModels<HomeViewModel>()
 
@@ -28,13 +35,25 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
                 MainActivity.navController.navigate(R.id.action_bottomNavigation_to_fragmentLogin)
             }
         })
+
+        _viewModel.getMenuTop {
+            menuAdapter.updateItems(it.toMutableList())
+        }
     }
 
     override fun onInit() {
         initView()
+        onClickView()
+    }
+
+    private fun onClickView() {
+        binding.menuDrawable.setOnClickListener {
+            binding.drawer.openDrawer(GravityCompat.START)
+        }
     }
 
     private fun initView() {
+        //Drawer
         binding.navigationDrawerLayout.apply {
             setupWithNavController(BottomNavigation.navController)
 
@@ -44,6 +63,32 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
                     MainActivity.navController.navigate(R.id.action_bottomNavigation_to_fragmentLogin)
                 }
                 return@setOnMenuItemClickListener true
+            }
+        }
+
+        //appbar layout
+        binding.appBarLayout.listener(onSuccess = {
+            binding.relativeLayout.visibility = GONE
+            binding.toolbar.visibility = VISIBLE
+        }, onFail = {
+            binding.relativeLayout.visibility = VISIBLE
+            binding.toolbar.visibility = INVISIBLE
+        })
+
+        //collapsingToolbarLayout
+        binding.collapsingToolbarLayout.apply {
+            setExpandedTitleColor(requireContext().getColor(R.color.white))
+            setCollapsedTitleTextColor(requireContext().getColor(R.color.white))
+        }
+
+        //setIcon toolbar
+        binding.toolbar.setNavigationIcon(R.drawable.ic_menu_24)
+
+        //recycler
+        binding.recyclerviewMenuTop.apply {
+            adapter = menuAdapter
+            menuAdapter.listener = { view, item, position ->
+
             }
         }
     }

@@ -16,4 +16,17 @@ class PlaceRepository @Inject constructor(private val _api : ApiServices) : Base
     suspend fun getPlaceFromLng(name : String) = callData {
         _api.getPlaceFromName(name)
     }
+
+    suspend fun getDataBannerRandom() = callData {
+        _api.getDataBannerRandom()
+    }
+
+    //-------------------------MENU --------------------
+    suspend fun getMenuTop() = callData {
+        _api.getDataMenuTop()
+    }
+
+    suspend fun getDataMenuBottom() = callData {
+        _api.getDataMenuBottom()
+    }
 }

@@ -1,10 +1,11 @@
 package com.nhom3.appdulich.core.service
 
 import com.nhom3.appdulich.data.body.account.*
-import com.nhom3.appdulich.data.response.place.PlaceReponse
 import com.nhom3.appdulich.data.response.account.AccountResponse
 import com.nhom3.appdulich.data.response.account.RegisterResponse
 import com.nhom3.appdulich.data.response.menu.MenuResponse
+import com.nhom3.appdulich.data.response.place.PlaceReponse
+import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiServices {
@@ -50,5 +51,14 @@ interface ApiServices {
     suspend fun searchPlace(@Query("strSearch") strSearch: String?): PlaceReponse
 
     @GET("rest-api/Place/getPlaceFromName")
-    suspend fun getPlaceFromName(@Query("name") name : String) : PlaceReponse
+    suspend fun getPlaceFromName(@Query("name") name: String): PlaceReponse
+
+    @GET("rest-api/Place/getDataBanerRandom")
+    suspend fun getDataBannerRandom(): PlaceReponse
+
+    @GET("rest-api/Menu/getDataMenuTop")
+    suspend fun getDataMenuTop(): MenuResponse
+
+    @GET("rest-api/Menu/getDataMenuBottom")
+    suspend fun getDataMenuBottom(): MenuResponse
 }

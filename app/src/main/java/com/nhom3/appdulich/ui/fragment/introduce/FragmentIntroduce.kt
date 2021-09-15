@@ -22,6 +22,7 @@ class FragmentIntroduce : BaseFragment<FragmentIntroduceBinding>() {
         binding.viewPager.apply {
             adapter = _adapter
             binding.pageIndicator.count = _adapter.itemCount
+
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
