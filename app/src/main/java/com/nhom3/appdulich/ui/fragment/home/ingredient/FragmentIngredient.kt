@@ -3,6 +3,7 @@ package com.nhom3.appdulich.ui.fragment.home.ingredient
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nhom3.appdulich.R
@@ -16,6 +17,8 @@ import com.nhom3.appdulich.ui.adapter.home.place_body.PlaceAdapterInside
 import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,14 +37,16 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
         }
 
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
             helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
         _id?.let {
-            _viewModel.getMenuIngredientFromIdMenu(it) { list ->
+            _viewModel.getMenuIngredientFromIdMenu(it) { it ->
                 helpers.dismissProgress()
-                ingredientAdapter.updateItems(list.toMutableList())
+                it.observe(viewLifecycleOwner,{
+                    ingredientAdapter.updateItems(it.toMutableList())
+                })
             }
         }
     }
@@ -91,7 +96,10 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
             adapter = ingredientAdapter
 
             ingredientAdapter.listener = { view, item, position ->
-                loadDataBody(view as RecyclerView, item, position)
+                lifecycleScope.launch {
+                    delay(3000)
+                    loadDataBody(view as RecyclerView, item, position)
+                }
             }
         }
     }
@@ -111,8 +119,10 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
         }
 
         _viewModel.getDataPlaceHomeRandom(item.id!!, 1) {
+            it.observe(viewLifecycleOwner,{
+                adapterInside.updateItems(it.toMutableList())
+            })
             helpers.dismissProgress()
-            adapterInside.updateItems(it.toMutableList())
         }
     }
 }

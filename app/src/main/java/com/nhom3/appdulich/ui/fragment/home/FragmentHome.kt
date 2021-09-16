@@ -39,8 +39,8 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         }
 
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
             helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
         _viewModel.getAccount(onSuccess = {
@@ -53,7 +53,9 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
         _viewModel.getMenuTop {
             helpers.dismissProgress()
-            menuAdapter.updateItems(it.toMutableList())
+            it.observe(viewLifecycleOwner,{
+                menuAdapter.updateItems(it.toMutableList())
+            })
         }
     }
 

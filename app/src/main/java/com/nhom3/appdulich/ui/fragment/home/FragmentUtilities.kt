@@ -30,13 +30,15 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
         }
 
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
             helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
         _viewModel.getDataMenuBottom {
-            adapterUtilities.updateItems(it.toMutableList())
             helpers.dismissProgress()
+            it.observe(viewLifecycleOwner,{
+                adapterUtilities.updateItems(it.toMutableList())
+            })
         }
     }
 

@@ -1,7 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home
 
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -32,8 +31,10 @@ class FragmentImage : BaseFragment<FragmentHomeLayoutBinding>() {
 
         _viewModel.getDataImageHomeRandom { it ->
             helpers.dismissProgress()
-            val list = it.map { it.image!! }.toMutableList()
-            adapterImage.updateItems(list)
+            it.observe(viewLifecycleOwner, {
+                val list = it.map { it.image!! }.toMutableList()
+                adapterImage.updateItems(list)
+            })
         }
     }
 

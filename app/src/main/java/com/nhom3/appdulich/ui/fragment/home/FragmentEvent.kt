@@ -26,13 +26,15 @@ class FragmentEvent : BaseFragment<FragmentHomeLayoutBinding>() {
         }
 
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
             helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
         _viewModel.getDataEventRanDom {
-            adapterEvent.updateItems(it.toMutableList())
             helpers.dismissProgress()
+            it.observe(viewLifecycleOwner,{
+                adapterEvent.updateItems(it.toMutableList())
+            })
         }
     }
 

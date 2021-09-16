@@ -24,14 +24,14 @@ class BannerFragment : BaseFragment<FragmentBannerBinding>() {
         }
 
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
             helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
         _viewModel.getDataBannerRandom {
             helpers.dismissProgress()
             it.observe(viewLifecycleOwner,{
-                adapterBanner.updateItems(it)
+                adapterBanner.updateItems(it.toMutableList())
             })
             binding.pageIndicatorViewBanner.count = adapterBanner.itemCount
         }
