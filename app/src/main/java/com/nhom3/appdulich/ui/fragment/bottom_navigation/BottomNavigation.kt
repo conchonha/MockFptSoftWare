@@ -1,7 +1,8 @@
-package com.nhom3.appdulich.ui.fragment.home
+package com.nhom3.appdulich.ui.fragment.bottom_navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -44,6 +45,7 @@ class BottomNavigation : BaseFragment<FragmentBottomNavigationBinding>() {
         binding.bottomNavigate.apply {
             setupWithNavController(navController)
             background = null
+
         }
     }
 }

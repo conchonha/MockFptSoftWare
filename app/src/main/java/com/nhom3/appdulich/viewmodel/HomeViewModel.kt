@@ -1,14 +1,13 @@
 package com.nhom3.appdulich.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.response.DataResponse
-import com.nhom3.appdulich.data.model.Account
-import com.nhom3.appdulich.data.model.Event
-import com.nhom3.appdulich.data.model.Menu
-import com.nhom3.appdulich.data.model.Place
+import com.nhom3.appdulich.data.model.*
 import com.nhom3.appdulich.repositories.AccountRepository
 import com.nhom3.appdulich.repositories.PlaceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,11 +33,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getDataBannerRandom(onSuccess: (List<Place>) -> Unit) = viewModelScope.launch {
+    fun getDataBannerRandom(onSuccess: (LiveData<List<Place>>) -> Unit) = viewModelScope.launch {
         loadingDialog?.invoke()
 
         when (val value = _placeRepository.getDataBannerRandom()) {
-            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
@@ -88,6 +87,16 @@ class HomeViewModel @Inject constructor(
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
+
+    fun getMenuIngredientFromIdMenu(id: Int, onSuccess: (List<IngredientMenu>) -> Unit) =
+        viewModelScope.launch {
+            loadingDialog?.invoke()
+
+            when (val value = _placeRepository.getMenuIngredientFromIdMenu(id)) {
+                is DataResponse.Success -> onSuccess(value.data.data!!)
+                is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+            }
+        }
 
     fun logout(function: () -> Unit) {
         _accountRepository.removeAccountLocal()

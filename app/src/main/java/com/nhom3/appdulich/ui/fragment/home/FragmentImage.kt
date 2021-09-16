@@ -1,5 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home
 
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nhom3.appdulich.R
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentImage : BaseFragment<FragmentHomeLayoutBinding>() {
-    private val _viewModel by viewModels<HomeViewModel>()
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     @Inject
     lateinit var adapterImage: AdapterImage
@@ -20,7 +21,17 @@ class FragmentImage : BaseFragment<FragmentHomeLayoutBinding>() {
     override fun getViewBinding() = FragmentHomeLayoutBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
+        _viewModel.loadingDialog = {
+            helpers.showProgressLoading(requireContext())
+        }
+
+        _viewModel.showError = {
+            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.dismissProgress()
+        }
+
         _viewModel.getDataImageHomeRandom { it ->
+            helpers.dismissProgress()
             val list = it.map { it.image!! }.toMutableList()
             adapterImage.updateItems(list)
         }

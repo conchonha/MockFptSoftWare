@@ -15,15 +15,16 @@
 
     <com.rd.PageIndicatorView
         android:id="@+id/pageIndicatorViewBanner"
+        app:piv_dynamicCount="true"
+        app:piv_viewPager="@id/viewpagerBanner"
+        app:piv_animationType="worm"
+        app:piv_selectedColor="@color/red"
+        app:piv_unselectedColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/_50dp"
-        app:piv_animationType="worm"
-        app:piv_dynamicCount="true"
-        app:piv_selectedColor="@color/red"
-        app:piv_unselectedColor="@color/black"
-        app:piv_viewPager="@id/viewpagerBanner" />
+      />
 
 </RelativeLayout>

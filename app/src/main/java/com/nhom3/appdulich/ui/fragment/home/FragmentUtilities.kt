@@ -1,19 +1,23 @@
 package com.nhom3.appdulich.ui.fragment.home
 
+import android.os.Bundle
 import android.view.View.INVISIBLE
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentHomeLayoutBinding
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.ui.adapter.home.UtilitiesAdapter
+import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
-    private val _viewModel by viewModels<HomeViewModel>()
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     @Inject
     lateinit var adapterUtilities: UtilitiesAdapter
@@ -32,6 +36,7 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
 
         _viewModel.getDataMenuBottom {
             adapterUtilities.updateItems(it.toMutableList())
+            helpers.dismissProgress()
         }
     }
 
@@ -50,7 +55,12 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
             isNestedScrollingEnabled = false
 
             adapterUtilities.listener = { view, item, position ->
-
+                requireView().navigate(
+                    R.id.action_fragmentHome_to_fragmentIngredient,
+                    Bundle().apply {
+                        putInt(Const.KEY_ID, item.id!!)
+                        putString(Const.KEY_NAME, item.name)
+                    })
             }
         }
 

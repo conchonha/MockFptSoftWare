@@ -99,9 +99,19 @@
         tools:layout="@layout/fragment_home"
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
         android:label="FragmentHome" >
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentHome_to_fragmentIngredient"
+            app:destination="@id/fragmentIngredient" />
     </fragment>
     <action android:id="@+id/action_global_fragmentMap"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_right"
         app:destination="@id/fragmentMap"/>
+    <fragment
+        android:id="@+id/fragmentIngredient"
+        tools:layout="@layout/fragment_ingredient"
+        android:name="com.nhom3.appdulich.ui.fragment.home.ingredient.FragmentIngredient"
+        android:label="FragmentIngredient" />
 </navigation>

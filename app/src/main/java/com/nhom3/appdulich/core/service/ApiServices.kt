@@ -6,7 +6,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiServices {
-
     @POST("rest-api/User/login")
     suspend fun postLogin(
         @Body loginBody: LoginBody
@@ -70,4 +69,7 @@ interface ApiServices {
 
     @GET("rest-api/Place/getDataImageHomeRandom")
     suspend fun getDataImageHomeRandom(): PlaceReponse
+
+    @GET("rest-api/Ingredient/getMenuIngredientFromIdMenu/id_menu={id}")
+    suspend fun getMenuIngredientFromIdMenu(@Path("id") id : Int): IngredientMenuResponse
 }

@@ -1,4 +1,4 @@
-package com.nhom3.appdulich.ui.adapter.home
+package com.nhom3.appdulich.ui.adapter.home.place_body
 
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseRecyclerViewAdapter

@@ -43,4 +43,9 @@ class PlaceRepository @Inject constructor(private val _api : ApiServices) : Base
     suspend fun getDataEventRanDom() = callData {
         _api.getDataEventRanDom()
     }
+
+    //------------------------INGREDIENT MENU ---------
+     suspend fun getMenuIngredientFromIdMenu(id : Int) = callData {
+         _api.getMenuIngredientFromIdMenu(id)
+    }
 }

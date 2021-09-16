@@ -1,5 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home
 
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhom3.appdulich.R
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentEvent : BaseFragment<FragmentHomeLayoutBinding>() {
-    private val _viewModel by viewModels<HomeViewModel>()
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     @Inject
     lateinit var adapterEvent: EventAdapter
@@ -31,6 +32,7 @@ class FragmentEvent : BaseFragment<FragmentHomeLayoutBinding>() {
 
         _viewModel.getDataEventRanDom {
             adapterEvent.updateItems(it.toMutableList())
+            helpers.dismissProgress()
         }
     }
 

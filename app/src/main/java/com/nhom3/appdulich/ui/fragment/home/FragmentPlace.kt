@@ -1,5 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home
 
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -7,14 +8,14 @@ import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.data.model.Menu
 import com.nhom3.appdulich.databinding.FragmentPalceBinding
 import com.nhom3.appdulich.ui.adapter.home.PlaceAdapter
-import com.nhom3.appdulich.ui.adapter.home.PlaceAdapterInside
+import com.nhom3.appdulich.ui.adapter.home.place_body.PlaceAdapterInside
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentPlace : BaseFragment<FragmentPalceBinding>() {
-    private val _viewModel by viewModels<HomeViewModel>()
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     @Inject
     lateinit var adapterPlace: PlaceAdapter
@@ -57,6 +58,7 @@ class FragmentPlace : BaseFragment<FragmentPalceBinding>() {
         val adapterInside = PlaceAdapterInside()
 
         recyclerView.apply {
+            isNestedScrollingEnabled = false
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterInside
