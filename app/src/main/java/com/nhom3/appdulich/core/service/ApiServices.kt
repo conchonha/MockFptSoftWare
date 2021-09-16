@@ -67,4 +67,7 @@ interface ApiServices {
         @Query("id") id: Int,
         @Query("check") check: Int
     ): PlaceReponse
+
+    @GET("rest-api/Place/getDataImageHomeRandom")
+    suspend fun getDataImageHomeRandom(): PlaceReponse
 }

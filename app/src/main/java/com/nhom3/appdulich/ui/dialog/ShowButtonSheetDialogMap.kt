@@ -12,7 +12,7 @@ import com.nhom3.appdulich.utils.Const
 
 class ShowButtonSheetDialogMap : BottomSheetDialogFragment() {
     private lateinit var _binding: DialogMapBinding
-    private val _adapter = AdapterImage()
+    private val _adapterImage by lazy {  AdapterImage() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,13 +26,13 @@ class ShowButtonSheetDialogMap : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding.recyclerImage.adapter = _adapter
+        _binding.recyclerImage.adapter = _adapterImage
         arguments?.apply {
             val place = getSerializable(Const.KEY_PLACE) as Place?
             place?.let {
                 _binding.place = it
                 val list = it.arrayImageView?.split("@")
-                list?.let { list -> _adapter.updateItems(list.toMutableList()) }
+                list?.let { list -> _adapterImage.updateItems(list.toMutableList()) }
             }
         }
     }

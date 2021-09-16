@@ -80,6 +80,15 @@ class HomeViewModel @Inject constructor(
             }
         }
 
+    fun getDataImageHomeRandom(onSuccess: (List<Place>) -> Unit) = viewModelScope.launch {
+        loadingDialog?.invoke()
+
+        when (val value = _placeRepository.getDataImageHomeRandom()) {
+            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+        }
+    }
+
     fun logout(function: () -> Unit) {
         _accountRepository.removeAccountLocal()
         function()

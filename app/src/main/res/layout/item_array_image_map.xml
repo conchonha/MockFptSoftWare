@@ -8,7 +8,8 @@
     <ImageView
         android:layout_width="@dimen/_200dp"
         setImageUrl="@{image}"
+        android:layout_margin="@dimen/_5dp"
         android:scaleType="centerCrop"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/_200dp"
         android:contentDescription="@string/lbl_image" />
 </layout>

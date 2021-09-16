@@ -47,11 +47,11 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
             layoutManager =
                 GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
             adapter = adapterUtilities
+            isNestedScrollingEnabled = false
 
             adapterUtilities.listener = { view, item, position ->
 
             }
-            isNestedScrollingEnabled = false
         }
 
         binding.txtSeeMore.visibility = INVISIBLE

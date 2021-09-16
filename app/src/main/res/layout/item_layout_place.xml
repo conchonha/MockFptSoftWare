@@ -37,6 +37,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="@dimen/_5dp"
+                android:maxWidth="@dimen/_250dp"
                 android:text="@{place.name}" />
 
             <RelativeLayout

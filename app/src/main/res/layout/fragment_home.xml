@@ -95,10 +95,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/img_city" />
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragmentImage"
+                    android:name="com.nhom3.appdulich.ui.fragment.home.FragmentImage"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="@dimen/_200dp"
+                    android:layout_height="match_parent" />
+
             </LinearLayout>
 
 
@@ -111,7 +114,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/menu_navigation_drawable">
-
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/menu_navigation_drawable" />
 </androidx.drawerlayout.widget.DrawerLayout>
