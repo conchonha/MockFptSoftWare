@@ -82,6 +82,23 @@
                     android:name="com.nhom3.appdulich.ui.fragment.home.FragmentUtilities"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragmentEvent"
+                    android:name="com.nhom3.appdulich.ui.fragment.home.FragmentEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragmentPlace"
+                    android:name="com.nhom3.appdulich.ui.fragment.home.FragmentPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_city" />
             </LinearLayout>
 
 

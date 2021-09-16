@@ -1,10 +1,7 @@
 package com.nhom3.appdulich.core.service
 
 import com.nhom3.appdulich.data.body.account.*
-import com.nhom3.appdulich.data.response.account.AccountResponse
-import com.nhom3.appdulich.data.response.account.RegisterResponse
-import com.nhom3.appdulich.data.response.menu.MenuResponse
-import com.nhom3.appdulich.data.response.place.PlaceReponse
+import com.nhom3.appdulich.data.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -61,4 +58,13 @@ interface ApiServices {
 
     @GET("rest-api/Menu/getDataMenuBottom")
     suspend fun getDataMenuBottom(): MenuResponse
+
+    @GET("rest-api/Event/getDataEventRanDom")
+    suspend fun getDataEventRanDom(): EventResponse
+
+    @GET("rest-api/Place/getDataPlaceHomeRandom")
+    suspend fun getDataPlaceHomeRandom(
+        @Query("id") id: Int,
+        @Query("check") check: Int
+    ): PlaceReponse
 }

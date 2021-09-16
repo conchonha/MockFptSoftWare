@@ -8,7 +8,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BannerAdapter @Inject constructor() : BaseRecyclerViewAdapter<Place, ItemBannerHomeBinding>() {
+class BannerAdapter @Inject constructor() :
+    BaseRecyclerViewAdapter<Place, ItemBannerHomeBinding>() {
 
     override fun getLayout() = R.layout.item_banner_home
 

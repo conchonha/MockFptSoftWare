@@ -1,23 +1,24 @@
-package com.nhom3.appdulich.data.response.account
+package com.nhom3.appdulich.data.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.nhom3.appdulich.data.model.Account
 
-data class AccountResponse(
+
+data class RegisterResponse(
     @SerializedName("message")
     @Expose
-    val message: String? = null,
+    var message: Any? = null,
 
     @SerializedName("statuscode")
     @Expose
-    val statuscode: Int? = null,
+    var statuscode: Int? = null,
 
     @SerializedName("total")
     @Expose
-    val total: Int? = null,
+    var total: Int? = null,
 
     @SerializedName("data")
     @Expose
-    val data: List<Account>? = null
+    var data: Account? = null
 )

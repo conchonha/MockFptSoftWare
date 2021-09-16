@@ -18,6 +18,8 @@ class UtilitiesAdapter @Inject constructor() :
         position: Int
     ) {
         holder.binding.menu = items[position]
-        listener?.invoke(holder.binding.root, items[position], position)
+        holder.binding.root.setOnClickListener {
+            listener?.invoke(holder.binding.root, items[position], position)
+        }
     }
 }

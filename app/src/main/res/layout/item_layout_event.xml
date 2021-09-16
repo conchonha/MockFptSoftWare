@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="event"
+            type="com.nhom3.appdulich.data.model.Event" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/linerLayoutEvent"
+        android:layout_width="@dimen/_280dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5dp"
+        android:background="@drawable/border_event"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200dp"
+            android:layout_margin="@dimen/_5dp"
+            setImageUrl="@{event.image}"
+            android:contentDescription="@string/lbl_image"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/txtMonth"
+            style="@style/TextContent"
+            android:layout_below="@+id/imgAvatar"
+            android:padding="@dimen/_5dp"
+            setTextMount = "@{event.updated_at}"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/txtDay"
+            style="@style/TextTitle"
+            android:layout_below="@+id/txtMonth"
+            android:padding="@dimen/_5dp"
+            setTextDate="@{event.updated_at}" />
+
+        <TextView
+            style="@style/TextContent"
+            android:layout_width="match_parent"
+            android:layout_alignTop="@+id/txtMonth"
+            android:layout_alignBottom="@+id/txtDay"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/txtMonth"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/_5dp"
+            android:text="@{event.name}" />
+    </RelativeLayout>
+</layout>

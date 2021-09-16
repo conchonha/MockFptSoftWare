@@ -46,4 +46,9 @@ data class Place(
     @ColumnInfo(name = "updateAt")
     val updateAt : String ? = null,
 
+    @ColumnInfo(name = "rating")
+    val rating : Float? = null,
+
+    @ColumnInfo(name = "like")
+    val like : Int? = null,
 ) : Serializable

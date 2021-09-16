@@ -1,22 +1,21 @@
 package com.nhom3.appdulich.ui.fragment.home
 
-import android.view.View.INVISIBLE
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentHomeLayoutBinding
-import com.nhom3.appdulich.ui.adapter.home.UtilitiesAdapter
+import com.nhom3.appdulich.ui.adapter.home.EventAdapter
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
+class FragmentEvent : BaseFragment<FragmentHomeLayoutBinding>() {
     private val _viewModel by viewModels<HomeViewModel>()
 
     @Inject
-    lateinit var adapterUtilities: UtilitiesAdapter
+    lateinit var adapterEvent: EventAdapter
 
     override fun getViewBinding() = FragmentHomeLayoutBinding.inflate(layoutInflater)
 
@@ -30,8 +29,8 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
             helpers.dismissProgress()
         }
 
-        _viewModel.getDataMenuBottom {
-            adapterUtilities.updateItems(it.toMutableList())
+        _viewModel.getDataEventRanDom {
+            adapterEvent.updateItems(it.toMutableList())
         }
     }
 
@@ -41,19 +40,17 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
 
     private fun initView() {
         binding.lifecycleOwner = this
-        binding.title = getString(R.string.lbl_utilities)
+        binding.title = getString(R.string.lbl_event)
 
         binding.recyclerHome.apply {
+            isNestedScrollingEnabled = false
             layoutManager =
-                GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
-            adapter = adapterUtilities
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = adapterEvent
 
-            adapterUtilities.listener = { view, item, position ->
+            adapterEvent.listener = { view, item, position ->
 
             }
-            isNestedScrollingEnabled = false
         }
-
-        binding.txtSeeMore.visibility = INVISIBLE
     }
 }

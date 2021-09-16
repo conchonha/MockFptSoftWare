@@ -1,11 +1,10 @@
-package com.nhom3.appdulich.data.response.place
+package com.nhom3.appdulich.data.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.nhom3.appdulich.data.model.Menu
-import com.nhom3.appdulich.data.model.Place
+import com.nhom3.appdulich.data.model.Event
 
-data class PlaceReponse(
+data class EventResponse(
     @SerializedName("message") @Expose
     var message: String? = null,
 
@@ -19,5 +18,5 @@ data class PlaceReponse(
 
     @SerializedName("data")
     @Expose
-    var data: List<Place>? = null
+    var data: List<Event>? = null
 )

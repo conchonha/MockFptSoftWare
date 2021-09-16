@@ -1,4 +1,4 @@
-package com.nhom3.appdulich.data.response.menu
+package com.nhom3.appdulich.data.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

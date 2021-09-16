@@ -1,9 +1,12 @@
 package com.nhom3.appdulich.extension
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
@@ -37,6 +40,20 @@ fun confirmPassword(editText: EditText, str: String) {
     editText.doAfterTextChanged {
         editText.error = validation.isConfirmPass(it.toString(), str)
     }
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("setTextMount")
+fun setTextMount(textView: TextView,str : String){
+    val list = str.split("-")
+    textView.text = "TH ${list[1]}"
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("setTextDate")
+fun setTextDate(textView: TextView,str : String){
+    val list = str.split("-")
+    textView.text = "TH ${list[2].substring(0,2)}"
 }
 
 fun View.navigate(action: Int, bundle: Bundle? = null) {

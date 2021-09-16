@@ -19,11 +19,11 @@ private const val TAG = "FragmentHome"
 
 @AndroidEntryPoint
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
-    @Inject
-    lateinit var menuAdapter: MenuAdapter
-
     private lateinit var _headerHomeBinding: HeaderHomeBinding
     private val _viewModel by viewModels<HomeViewModel>()
+
+    @Inject
+    lateinit var menuAdapter: MenuAdapter
 
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
 

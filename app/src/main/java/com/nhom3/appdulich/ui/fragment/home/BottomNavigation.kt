@@ -1,14 +1,11 @@
 package com.nhom3.appdulich.ui.fragment.home
 
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentBottomNavigationBinding
-import com.nhom3.appdulich.extension.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

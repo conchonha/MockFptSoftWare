@@ -11,10 +11,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class BannerFragment : BaseFragment<FragmentBannerBinding>() {
+    private val _viewModel by viewModels<HomeViewModel>()
+
     @Inject
     lateinit var adapterBanner: BannerAdapter
-
-    private val _viewModel by viewModels<HomeViewModel>()
 
     override fun getViewBinding() = FragmentBannerBinding.inflate(layoutInflater)
 
