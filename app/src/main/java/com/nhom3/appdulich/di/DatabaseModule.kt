@@ -24,7 +24,7 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideTaskDao(appDatabase: AppDatabase): PlaceDao {
-        return appDatabase.getPlaceDao()
+    fun providePlaceDao(appDatabase: AppDatabase): PlaceDao {
+        return appDatabase.getFavoritePlaceDao()
     }
 }

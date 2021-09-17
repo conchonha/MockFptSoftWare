@@ -57,7 +57,7 @@
 
                 <TextView
                     style="@style/TextContent"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:drawablePadding="@dimen/_5dp"
                     android:padding="@dimen/_5dp"
                     android:text= '@{place.like + ""}'

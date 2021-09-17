@@ -3,7 +3,7 @@ package com.nhom3.appdulich.utils
 import android.Manifest
 
 object Const {
-    const val BASE_URL = "http://192.168.1.5/AppDuLichAndroidLaravel/public/"
+    const val BASE_URL = "http://192.168.1.4/AppDuLichAndroidLaravel/public/"
     const val WEB_VIEW_URL = "https://www.ivivu.com/blog/category/viet-nam/da-nang/"
 
     const val KEY_EMAIL = "KEY_EMAIL"
