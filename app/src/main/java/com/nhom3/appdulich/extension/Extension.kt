@@ -68,7 +68,7 @@ fun Toolbar.setUpToolbar(icon: Int? = null, onclick: () -> Unit) {
 }
 
 @BindingAdapter("setImageUrl")
-fun setUrlImage(imageView: ImageView, src: String) {
+fun setUrlImage(imageView: ImageView, src: String?) {
     Glide.with(imageView.context).load(src).error(R.drawable.img_error).placeholder(R.drawable.img_city)
         .into(imageView)
 }

@@ -6,8 +6,9 @@
             type="String" />
     </data>
     <ImageView
-        android:layout_width="@dimen/_200dp"
+        android:layout_width="@dimen/_250dp"
         setImageUrl="@{image}"
+        android:id="@+id/img"
         android:layout_margin="@dimen/_5dp"
         android:scaleType="centerCrop"
         android:layout_height="@dimen/_200dp"

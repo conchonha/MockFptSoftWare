@@ -1,16 +1,19 @@
-package com.nhom3.appdulich.ui.fragment.home
+package com.nhom3.appdulich.ui.fragment.bottom_navigation
 
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentBottomNavigationBinding
+import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BottomNavigation : BaseFragment<FragmentBottomNavigationBinding>() {
     private lateinit var _navHostFragment: NavHostFragment
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     companion object {
         lateinit var navController: NavController

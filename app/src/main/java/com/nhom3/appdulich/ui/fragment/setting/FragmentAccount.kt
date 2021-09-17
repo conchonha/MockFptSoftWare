@@ -7,7 +7,6 @@ import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentAccountBinding
 import com.nhom3.appdulich.extension.navigate
-import com.nhom3.appdulich.ui.fragment.home.BottomNavigation
 import com.nhom3.appdulich.ui.page.MainActivity
 import com.nhom3.appdulich.viewmodel.SettingAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint

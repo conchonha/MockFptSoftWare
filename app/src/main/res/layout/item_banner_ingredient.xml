@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="place"
+            type="com.nhom3.appdulich.data.model.Place" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            setImageUrl="@{place.image}"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/lbl_image" />
+
+        <TextView
+            style="@style/TextContent"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/h90000000"
+            android:padding="@dimen/_10dp"
+            android:text="@{place.name}"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</layout>

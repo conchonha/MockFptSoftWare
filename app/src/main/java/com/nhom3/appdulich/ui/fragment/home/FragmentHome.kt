@@ -1,7 +1,9 @@
 package com.nhom3.appdulich.ui.fragment.home
 
+import android.os.Bundle
 import android.view.View.*
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.ui.setupWithNavController
 import com.nhom3.appdulich.R
@@ -9,8 +11,12 @@ import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentHomeBinding
 import com.nhom3.appdulich.databinding.HeaderHomeBinding
 import com.nhom3.appdulich.extension.listener
+import com.nhom3.appdulich.extension.navigate
+import com.nhom3.appdulich.extension.setUpToolbar
 import com.nhom3.appdulich.ui.adapter.home.MenuAdapter
+import com.nhom3.appdulich.ui.fragment.bottom_navigation.BottomNavigation
 import com.nhom3.appdulich.ui.page.MainActivity
+import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -20,7 +26,7 @@ private const val TAG = "FragmentHome"
 @AndroidEntryPoint
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
     private lateinit var _headerHomeBinding: HeaderHomeBinding
-    private val _viewModel by viewModels<HomeViewModel>()
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     @Inject
     lateinit var menuAdapter: MenuAdapter
@@ -28,6 +34,15 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
+        _viewModel.loadingDialog = {
+            helpers.showProgressLoading(requireContext())
+        }
+
+        _viewModel.showError = {
+            helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
+        }
+
         _viewModel.getAccount(onSuccess = {
             _headerHomeBinding.account = it
         }, onFail = {
@@ -37,7 +52,10 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         })
 
         _viewModel.getMenuTop {
-            menuAdapter.updateItems(it.toMutableList())
+            helpers.dismissProgress()
+            it.observe(viewLifecycleOwner,{
+                menuAdapter.updateItems(it.toMutableList())
+            })
         }
     }
 
@@ -69,10 +87,10 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         //appbar layout
         binding.appBarLayout.listener(onSuccess = {
             binding.relativeLayout.visibility = GONE
-            binding.toolbar.visibility = VISIBLE
+            binding.toolbar.toolbar.visibility = VISIBLE
         }, onFail = {
             binding.relativeLayout.visibility = VISIBLE
-            binding.toolbar.visibility = INVISIBLE
+            binding.toolbar.toolbar.visibility = INVISIBLE
         })
 
         //collapsingToolbarLayout
@@ -82,13 +100,23 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         }
 
         //setIcon toolbar
-        binding.toolbar.setNavigationIcon(R.drawable.ic_menu_24)
+        binding.toolbar.toolbar.apply {
+            setBackgroundColor(context.getColor(R.color.colorPrimary))
+            setUpToolbar(R.drawable.ic_menu_24) {
+                binding.drawer.openDrawer(GravityCompat.START)
+            }
+        }
 
         //recycler
         binding.recyclerviewMenuTop.apply {
             adapter = menuAdapter
             menuAdapter.listener = { view, item, position ->
-
+                requireView().navigate(
+                    R.id.action_fragmentHome_to_fragmentIngredient,
+                    Bundle().apply {
+                        putInt(Const.KEY_ID, item.id!!)
+                        putString(Const.KEY_NAME, item.name)
+                    })
             }
         }
     }

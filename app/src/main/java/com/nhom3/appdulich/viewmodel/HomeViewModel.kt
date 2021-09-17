@@ -1,14 +1,13 @@
 package com.nhom3.appdulich.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.response.DataResponse
-import com.nhom3.appdulich.data.model.Account
-import com.nhom3.appdulich.data.model.Event
-import com.nhom3.appdulich.data.model.Menu
-import com.nhom3.appdulich.data.model.Place
+import com.nhom3.appdulich.data.model.*
 import com.nhom3.appdulich.repositories.AccountRepository
 import com.nhom3.appdulich.repositories.PlaceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,45 +33,48 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getDataBannerRandom(onSuccess: (List<Place>) -> Unit) = viewModelScope.launch {
+    fun getDataBannerRandom(onSuccess: (LiveData<List<Place>>) -> Unit) = viewModelScope.launch {
         loadingDialog?.invoke()
 
         when (val value = _placeRepository.getDataBannerRandom()) {
-            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
 
-    fun getMenuTop(onSuccess: (List<Menu>) -> Unit) = viewModelScope.launch {
+    fun getMenuTop(onSuccess: (LiveData<List<Menu>>) -> Unit) = viewModelScope.launch {
         loadingDialog?.invoke()
 
         when (val value = _placeRepository.getMenuTop()) {
-            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
 
-    fun getDataMenuBottom(onSuccess: (List<Menu>) -> Unit) = viewModelScope.launch {
+    fun getDataMenuBottom(onSuccess: (LiveData<List<Menu>>) -> Unit) = viewModelScope.launch {
         loadingDialog?.invoke()
 
         when (val value = _placeRepository.getDataMenuBottom()) {
-            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
 
-    fun getDataEventRanDom(onSuccess: (List<Event>) -> Unit) = viewModelScope.launch {
+    fun getDataEventRanDom(onSuccess: (LiveData<List<Event>>) -> Unit) = viewModelScope.launch {
         loadingDialog?.invoke()
 
         when (val value = _placeRepository.getDataEventRanDom()) {
-            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
 
-    fun getDataPlaceHomeRandom(idMenu: Int, check: Int, onSuccess: (List<Place>) -> Unit) =
+    fun getDataPlaceHomeRandom(
+        idMenu: Int,
+        check: Int,
+        onSuccess: (List<Place>) -> Unit
+    ) =
         viewModelScope.launch {
-            loadingDialog?.invoke()
 
             when (val value = _placeRepository.getDataPlaceHomeRandom(idMenu, check)) {
                 is DataResponse.Success -> onSuccess(value.data.data!!)
@@ -80,14 +82,43 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-    fun getDataImageHomeRandom(onSuccess: (List<Place>) -> Unit) = viewModelScope.launch {
+    fun getDataImageHomeRandom(onSuccess: (LiveData<List<Place>>) -> Unit) = viewModelScope.launch {
         loadingDialog?.invoke()
 
         when (val value = _placeRepository.getDataImageHomeRandom()) {
-            is DataResponse.Success -> onSuccess(value.data.data!!)
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
     }
+
+    fun getMenuIngredientFromIdMenu(id: Int, onSuccess: (LiveData<List<IngredientMenu>>) -> Unit) =
+        viewModelScope.launch {
+            loadingDialog?.invoke()
+
+            when (val value = _placeRepository.getMenuIngredientFromIdMenu(id)) {
+                is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
+                is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+            }
+        }
+
+    fun getAllImagePlace(onSuccess: (LiveData<List<Place>>) -> Unit) = viewModelScope.launch {
+        loadingDialog?.invoke()
+
+        when (val value = _placeRepository.getAllImagePlace()) {
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
+            is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+        }
+    }
+
+    fun getListPlaceIdIngredient(id: Int, onSuccess: (LiveData<List<Place>>) -> Unit) =
+        viewModelScope.launch {
+            loadingDialog?.invoke()
+
+            when (val value = _placeRepository.getListPlaceIdIngredient(id)) {
+                is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
+                is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+            }
+        }
 
     fun logout(function: () -> Unit) {
         _accountRepository.removeAccountLocal()

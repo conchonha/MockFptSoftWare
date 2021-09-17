@@ -1,6 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentBannerBinding
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class BannerFragment : BaseFragment<FragmentBannerBinding>() {
-    private val _viewModel by viewModels<HomeViewModel>()
+    private val _viewModel by activityViewModels<HomeViewModel>()
 
     @Inject
     lateinit var adapterBanner: BannerAdapter
@@ -24,13 +24,16 @@ class BannerFragment : BaseFragment<FragmentBannerBinding>() {
         }
 
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
             helpers.dismissProgress()
+            helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
         _viewModel.getDataBannerRandom {
             helpers.dismissProgress()
-            adapterBanner.updateItems(it.toMutableList())
+            it.observe(viewLifecycleOwner,{
+                adapterBanner.updateItems(it.toMutableList())
+            })
+            binding.pageIndicatorViewBanner.count = adapterBanner.itemCount
         }
     }
 
@@ -41,7 +44,6 @@ class BannerFragment : BaseFragment<FragmentBannerBinding>() {
     private fun initView() {
         binding.viewpagerBanner.apply {
             adapter = adapterBanner
-            binding.pageIndicatorViewBanner.count = adapterBanner.itemCount
 
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {

@@ -11,6 +11,10 @@ import javax.inject.Singleton
 class BannerAdapter @Inject constructor() :
     BaseRecyclerViewAdapter<Place, ItemBannerHomeBinding>() {
 
+    override fun getItemCount(): Int {
+        return if(items.size >= 5) 5 else items.size
+    }
+
     override fun getLayout() = R.layout.item_banner_home
 
     override fun onBindViewHolder(holder: BaseViewHolder<ItemBannerHomeBinding>, position: Int) {

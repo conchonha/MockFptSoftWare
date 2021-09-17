@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_map"
             android:title="@string/lbl_map" />
         <item
-            android:id="@+id/fragmentMyProfile"
-            android:icon="@drawable/ic_account"
-            android:title="@string/lbl_my_profile" />
-        <item
             android:id="@+id/fragmentFavorite"
             android:icon="@drawable/ic_favorite"
             android:title="@string/lbl_favorite_history" />

@@ -103,7 +103,7 @@
     <fragment
         tools:layout="@layout/fragment_bottom_navigation"
         android:id="@+id/bottomNavigation"
-        android:name="com.nhom3.appdulich.ui.fragment.home.BottomNavigation"
+        android:name="com.nhom3.appdulich.ui.fragment.bottom_navigation.BottomNavigation"
         android:label="BottomNavigation" >
         <action
             android:id="@+id/action_bottomNavigation_to_fragmentLogin"

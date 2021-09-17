@@ -48,7 +48,10 @@ class RegisterViewModel @Inject constructor(
                             _repository.saveAccount(value.data.data!!)
                             onSuccess()
                         }
-                        else -> showError?.invoke(value.data.message.toString())
+                        else -> {
+                            Log.d("AAA", "registerAccount: ${value.data.message.toString()}")
+                            showError?.invoke(value.data.message.toString())
+                        }
                     }
 
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())

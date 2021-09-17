@@ -29,6 +29,18 @@ class PlaceRepository @Inject constructor(private val _api : ApiServices) : Base
         _api.getDataImageHomeRandom()
     }
 
+    suspend fun getAllImagePlace() = callData {
+        _api.getAllImagePlace()
+    }
+
+    suspend fun getListPlaceIdIngredient(id : Int) = callData {
+        _api.getListPlaceIdIngredient(id)
+    }
+
+    suspend fun getDataPlaceIdPlace(id : Int) = callData {
+        _api.getDataPlaceIdPlace(id)
+    }
+
     //-------------------------MENU --------------------
     suspend fun getMenuTop() = callData {
         _api.getDataMenuTop()
@@ -42,5 +54,10 @@ class PlaceRepository @Inject constructor(private val _api : ApiServices) : Base
 
     suspend fun getDataEventRanDom() = callData {
         _api.getDataEventRanDom()
+    }
+
+    //------------------------INGREDIENT MENU ---------
+     suspend fun getMenuIngredientFromIdMenu(id : Int) = callData {
+         _api.getMenuIngredientFromIdMenu(id)
     }
 }
