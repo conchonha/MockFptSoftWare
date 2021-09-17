@@ -37,6 +37,10 @@ class PlaceRepository @Inject constructor(private val _api : ApiServices) : Base
         _api.getListPlaceIdIngredient(id)
     }
 
+    suspend fun getDataPlaceIdPlace(id : Int) = callData {
+        _api.getDataPlaceIdPlace(id)
+    }
+
     //-------------------------MENU --------------------
     suspend fun getMenuTop() = callData {
         _api.getDataMenuTop()

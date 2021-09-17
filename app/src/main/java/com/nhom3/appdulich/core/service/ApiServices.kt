@@ -78,4 +78,7 @@ interface ApiServices {
 
     @GET("rest-api/Place/getDataPlaceIdIngredient")
     suspend fun getListPlaceIdIngredient(@Query("id") id: Int): PlaceReponse
+
+    @GET("rest-api/Place/getDataPlaceIdPlace")
+    suspend fun getDataPlaceIdPlace(@Query("id") id: Int): DetailResponse
 }

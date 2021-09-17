@@ -57,8 +57,7 @@
         android:id="@+id/fragmentMap"
         android:name="com.nhom3.appdulich.ui.fragment.map.FragmentMap"
         android:label="FragmentMap"
-        tools:layout="@layout/fragment_map" >
-    </fragment>
+        tools:layout="@layout/fragment_map"></fragment>
     <fragment
         android:id="@+id/fragmentMyProfile"
         android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentMyProfile"
@@ -79,10 +78,10 @@
         <action
             android:id="@+id/action_fragmentUpdateProfile_to_fragmentMyProfile"
             app:destination="@id/fragmentMyProfile"
-            app:popUpTo="@id/fragmentMyProfile"
-            app:popUpToInclusive="true"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"/>
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/fragmentMyProfile"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAbout"
@@ -96,43 +95,55 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/fragmentHome"
-        tools:layout="@layout/fragment_home"
         android:name="com.nhom3.appdulich.ui.fragment.home.FragmentHome"
-        android:label="FragmentHome" >
+        android:label="FragmentHome"
+        tools:layout="@layout/fragment_home">
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"
             android:id="@+id/action_fragmentHome_to_fragmentIngredient"
-            app:destination="@id/fragmentIngredient" />
-        <action
+            app:destination="@id/fragmentIngredient"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"
+            app:exitAnim="@anim/slide_out_right" />
+        <action
             android:id="@+id/action_fragmentHome_to_fragmentImageInside"
-            app:destination="@id/fragmentImageInside" />
+            app:destination="@id/fragmentImageInside"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
-    <action android:id="@+id/action_global_fragmentMap"
+    <action
+        android:id="@+id/action_global_fragmentMap"
+        app:destination="@id/fragmentMap"
         app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_right"
-        app:destination="@id/fragmentMap"/>
+        app:exitAnim="@anim/slide_out_right" />
     <fragment
         android:id="@+id/fragmentIngredient"
-        tools:layout="@layout/fragment_ingredient"
         android:name="com.nhom3.appdulich.ui.fragment.home.ingredient.FragmentIngredient"
-        android:label="FragmentIngredient" >
+        android:label="FragmentIngredient"
+        tools:layout="@layout/fragment_ingredient">
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"
             android:id="@+id/action_fragmentIngredient_to_fragmentListPlace"
-            app:destination="@id/fragmentListPlace" />
+            app:destination="@id/fragmentListPlace"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_image_inside"
         android:id="@+id/fragmentImageInside"
         android:name="com.nhom3.appdulich.ui.fragment.image.FragmentImageInside"
-        android:label="FragmentImageInside" />
+        android:label="FragmentImageInside"
+        tools:layout="@layout/fragment_image_inside" />
     <fragment
-        tools:layout="@layout/fragment_ingredient"
         android:id="@+id/fragmentListPlace"
         android:name="com.nhom3.appdulich.ui.fragment.home.list_place.FragmentListPlace"
-        android:label="FragmentListPlace" />
+        android:label="FragmentListPlace"
+        tools:layout="@layout/fragment_ingredient" />
+    <fragment
+        android:id="@+id/fragmentDetailPlace"
+        android:name="com.nhom3.appdulich.ui.fragment.detail_place.FragmentDetailPlace"
+        android:label="FragmentDetailPlace"
+        tools:layout="@layout/fragment_detail_place" />
+
+    <action
+        android:id="@+id/action_global_fragmentDetailPlace"
+        app:destination="@id/fragmentDetailPlace"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right" />
 </navigation>

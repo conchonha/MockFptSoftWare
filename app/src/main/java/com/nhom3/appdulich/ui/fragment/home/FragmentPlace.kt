@@ -84,7 +84,9 @@ class FragmentPlace : BaseFragment<FragmentPalceBinding>() {
             adapter = adapterInside
 
             adapterInside.listener = { view, item, position ->
-
+                requireView().navigate(R.id.action_global_fragmentDetailPlace, Bundle().apply {
+                    putInt(Const.KEY_ID, item.id)
+                })
             }
         }
 

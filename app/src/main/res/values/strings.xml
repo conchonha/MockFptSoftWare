@@ -93,4 +93,7 @@
     <string name="lbl_see_more">See more</string>
     <string name="lbl_utilities">Utilities</string>
     <string name="lbl_event">Event</string>
+    <string name="lbl_introduce">Introduce</string>
+    <string name="lbl_overview">Overview</string>
+    <string name="lbl_detail">Detail Place</string>
 </resources>
