@@ -21,7 +21,7 @@
                 android:background="@android:color/transparent"
                 app:expandedTitleGravity="center|top"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="Sang Thai">
+                app:title="Home">
 
                 <ImageView
                     android:id="@+id/menuDrawable"

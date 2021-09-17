@@ -16,15 +16,45 @@
         <entry key="..\:/MockFptSoftWare/app/src/main/res/layout/item_list_place.xml" value="0.11119554204660588" />
         <entry key="..\:/MockFptSoftWare/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.23229166666666667" />
         <entry key="..\:/MockFptSoftWare/app/src/main/res/menu/menu_navigation_drawable.xml" value="0.2287179487179487" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_about.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_account.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_banner.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_change_password.xml" value="0.371875" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_detail_place.xml" value="0.1403985507246377" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_favorite.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_home_layout.xml" value="0.20471014492753623" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_image_inside.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_ingredient.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_introduce.xml" value="0.371875" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_login.xml" value="0.1403985507246377" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_map.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_new_password.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_palce.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_profile.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_register.xml" value="0.371875" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_search.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_setting.xml" value="0.371875" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_slide_1.xml" value="0.22" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_slide_2.xml" value="0.33" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_slide_3.xml" value="0.25" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_splash.xml" value="0.13768115942028986" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_update_profile.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/fragment_verify_account.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/header_home.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_array_image_map.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_banner_home.xml" value="0.24094202898550723" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_banner_ingredient.xml" value="0.25" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_favorite_place.xml" value="0.16869300911854104" />
         <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_layout_event.xml" value="0.1716485507246377" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_layout_place.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_layout_utilities.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_list_place.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_menu_map.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/item_menu_top.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/layout/layout_toolbar.xml" value="0.371875" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3" />
+        <entry key="..\:/New folder/MockFptSoftWare/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/drawable-v24/background1.xml" value="0.24461538461538462" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/drawable-v24/ic_baseline_lock_24.xml" value="0.24461538461538462" />
         <entry key="..\:/android/FresherAcademy/android_advance/AppDulich/app/src/main/res/drawable-v24/ic_baseline_person_add_24.xml" value="0.24461538461538462" />
