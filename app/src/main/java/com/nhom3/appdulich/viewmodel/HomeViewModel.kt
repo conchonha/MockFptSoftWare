@@ -72,12 +72,12 @@ class HomeViewModel @Inject constructor(
     fun getDataPlaceHomeRandom(
         idMenu: Int,
         check: Int,
-        onSuccess: (LiveData<List<Place>>) -> Unit
+        onSuccess: (List<Place>) -> Unit
     ) =
         viewModelScope.launch {
 
             when (val value = _placeRepository.getDataPlaceHomeRandom(idMenu, check)) {
-                is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
+                is DataResponse.Success -> onSuccess(value.data.data!!)
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
             }
         }
@@ -96,6 +96,25 @@ class HomeViewModel @Inject constructor(
             loadingDialog?.invoke()
 
             when (val value = _placeRepository.getMenuIngredientFromIdMenu(id)) {
+                is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
+                is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+            }
+        }
+
+    fun getAllImagePlace(onSuccess: (LiveData<List<Place>>) -> Unit) = viewModelScope.launch {
+        loadingDialog?.invoke()
+
+        when (val value = _placeRepository.getAllImagePlace()) {
+            is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
+            is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
+        }
+    }
+
+    fun getListPlaceIdIngredient(id: Int, onSuccess: (LiveData<List<Place>>) -> Unit) =
+        viewModelScope.launch {
+            loadingDialog?.invoke()
+
+            when (val value = _placeRepository.getListPlaceIdIngredient(id)) {
                 is DataResponse.Success -> onSuccess(MutableLiveData(value.data.data!!))
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
             }

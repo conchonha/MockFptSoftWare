@@ -72,4 +72,10 @@ interface ApiServices {
 
     @GET("rest-api/Ingredient/getMenuIngredientFromIdMenu/id_menu={id}")
     suspend fun getMenuIngredientFromIdMenu(@Path("id") id : Int): IngredientMenuResponse
+
+    @GET("rest-api/Place/getAllImagePlace")
+    suspend fun getAllImagePlace(): PlaceReponse
+
+    @GET("rest-api/Place/getDataPlaceIdIngredient")
+    suspend fun getListPlaceIdIngredient(@Query("id") id: Int): PlaceReponse
 }

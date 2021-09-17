@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentHomeLayoutBinding
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.ui.adapter.map.AdapterImage
 import com.nhom3.appdulich.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +41,13 @@ class FragmentImage : BaseFragment<FragmentHomeLayoutBinding>() {
 
     override fun onInit() {
         initView()
+        onClickView()
+    }
+
+    private fun onClickView() {
+        binding.txtSeeMore.setOnClickListener {
+            requireView().navigate(R.id.action_fragmentHome_to_fragmentImageInside)
+        }
     }
 
     private fun initView() {

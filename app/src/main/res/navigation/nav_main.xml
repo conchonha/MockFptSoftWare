@@ -104,6 +104,11 @@
             app:exitAnim="@anim/slide_out_right"
             android:id="@+id/action_fragmentHome_to_fragmentIngredient"
             app:destination="@id/fragmentIngredient" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentHome_to_fragmentImageInside"
+            app:destination="@id/fragmentImageInside" />
     </fragment>
     <action android:id="@+id/action_global_fragmentMap"
         app:enterAnim="@anim/slide_in_right"
@@ -113,5 +118,21 @@
         android:id="@+id/fragmentIngredient"
         tools:layout="@layout/fragment_ingredient"
         android:name="com.nhom3.appdulich.ui.fragment.home.ingredient.FragmentIngredient"
-        android:label="FragmentIngredient" />
+        android:label="FragmentIngredient" >
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentIngredient_to_fragmentListPlace"
+            app:destination="@id/fragmentListPlace" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_image_inside"
+        android:id="@+id/fragmentImageInside"
+        android:name="com.nhom3.appdulich.ui.fragment.image.FragmentImageInside"
+        android:label="FragmentImageInside" />
+    <fragment
+        tools:layout="@layout/fragment_ingredient"
+        android:id="@+id/fragmentListPlace"
+        android:name="com.nhom3.appdulich.ui.fragment.home.list_place.FragmentListPlace"
+        android:label="FragmentListPlace" />
 </navigation>

@@ -7,7 +7,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AdapterImage @Inject constructor(): BaseRecyclerViewAdapter<String, ItemArrayImageMapBinding>() {
+class AdapterImage @Inject constructor() :
+    BaseRecyclerViewAdapter<String, ItemArrayImageMapBinding>() {
 
     override fun getLayout() = R.layout.item_array_image_map
 

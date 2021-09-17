@@ -1,17 +1,20 @@
 package com.nhom3.appdulich.ui.fragment.home.ingredient
 
-import android.util.Log
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.data.model.IngredientMenu
 import com.nhom3.appdulich.databinding.FragmentIngredientBinding
 import com.nhom3.appdulich.extension.listener
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.extension.setUpToolbar
+import com.nhom3.appdulich.ui.adapter.home.ingredient.BannerAdapter
 import com.nhom3.appdulich.ui.adapter.home.ingredient.IngredientAdapter
 import com.nhom3.appdulich.ui.adapter.home.place_body.PlaceAdapterInside
 import com.nhom3.appdulich.utils.Const
@@ -29,6 +32,9 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
     @Inject
     lateinit var ingredientAdapter: IngredientAdapter
 
+    @Inject
+    lateinit var adapterBanner: BannerAdapter
+
     override fun getViewBinding() = FragmentIngredientBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
@@ -41,12 +47,20 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
             helpers.showAlertDialog(msg = it, context = requireContext())
         }
 
-        _id?.let {
-            _viewModel.getMenuIngredientFromIdMenu(it) { it ->
+        _id?.let { id ->
+            _viewModel.getMenuIngredientFromIdMenu(id) { listMenu ->
                 helpers.dismissProgress()
-                it.observe(viewLifecycleOwner,{
+                listMenu.observe(viewLifecycleOwner, {
                     ingredientAdapter.updateItems(it.toMutableList())
                 })
+            }
+
+            helpers.showProgressLoading(requireContext())
+
+            _viewModel.getDataPlaceHomeRandom(id, 0) {
+                helpers.dismissProgress()
+                adapterBanner.updateItems(it.toMutableList())
+                binding.pageIndicatorViewBanner.count = adapterBanner.itemCount
             }
         }
     }
@@ -92,18 +106,42 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
         //recycler
         binding.recyclerPlace.apply {
             isNestedScrollingEnabled = false
-            layoutManager = LinearLayoutManager(requireContext())
             adapter = ingredientAdapter
 
             ingredientAdapter.listener = { view, item, position ->
                 lifecycleScope.launch {
-                    delay(3000)
+                    delay(1000)
                     loadDataBody(view as RecyclerView, item, position)
                 }
+            }
+            ingredientAdapter.seeMoreListener = { view, ingredientMenu, i ->
+                requireView().navigate(
+                    R.id.action_fragmentIngredient_to_fragmentListPlace,
+                    Bundle().apply {
+                        putInt(Const.KEY_ID, ingredientMenu.id!!)
+                        putString(Const.KEY_NAME, ingredientMenu.name)
+                    })
+            }
+        }
+
+        //viewpager
+        binding.viewPager.apply {
+            adapter = adapterBanner
+
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    binding.pageIndicatorViewBanner.selection = position
+                }
+            })
+
+            adapterBanner.listener = { view, item, position ->
+
             }
         }
     }
 
+    //load data place body
     private fun loadDataBody(recyclerView: RecyclerView, item: IngredientMenu, position: Int) {
         val adapterInside = PlaceAdapterInside()
 
@@ -114,15 +152,12 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
             adapter = adapterInside
 
             adapterInside.listener = { view, item, position ->
-                Log.d("AAA", "loadDataBody: $item")
             }
         }
 
         _viewModel.getDataPlaceHomeRandom(item.id!!, 1) {
-            it.observe(viewLifecycleOwner,{
-                adapterInside.updateItems(it.toMutableList())
-            })
             helpers.dismissProgress()
+            adapterInside.updateItems(it.toMutableList())
         }
     }
 }

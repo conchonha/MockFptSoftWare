@@ -17,7 +17,7 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/layout_toolbar"
-            app:title='@{@string/lbl_my_profile}' />
+            app:title='@{@string/btn_verify}' /> />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
