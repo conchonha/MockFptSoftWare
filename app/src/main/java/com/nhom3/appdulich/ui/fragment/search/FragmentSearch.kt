@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.databinding.FragmentSearchBinding
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.ui.adapter.search.SearchAdapter
+import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.utils.Helpers
 import com.nhom3.appdulich.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +20,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentSearch : Fragment(R.layout.fragment_search) {
-
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
     private val adapter = SearchAdapter()
@@ -37,6 +38,15 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        adapter.listener = {place ->
+            requireView().navigate(R.id.action_global_fragmentDetailPlace,Bundle().apply {
+                putInt(Const.KEY_ID,place.id)
+            })
+        }
+    }
+
     private fun getDataSearch(namePlace: String) {
         binding.rvPlaceSearch.adapter = adapter
         viewModel.searchPlace(namePlace) {
@@ -48,8 +58,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
 
     private fun loadDataFailure() {
         viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
-            helpers.dismissProgress()
+            helpers.showToast(it)
         }
     }
 

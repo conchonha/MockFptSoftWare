@@ -21,17 +21,11 @@ class FragmentImage : BaseFragment<FragmentHomeLayoutBinding>() {
     override fun getViewBinding() = FragmentHomeLayoutBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
-            helpers.dismissProgress()
+            helpers.showToast(it)
         }
 
         _viewModel.getDataImageHomeRandom { it ->
-            helpers.dismissProgress()
             it.observe(viewLifecycleOwner, {
                 val list = it.map { it.image!! }.toMutableList()
                 adapterImage.updateItems(list)

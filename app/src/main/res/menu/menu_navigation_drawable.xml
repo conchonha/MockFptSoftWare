@@ -16,6 +16,10 @@
             android:id="@+id/fragmentSearch"
             android:icon="@drawable/ic_search"
             android:title="@string/lbl_search" />
+        <item
+            android:id="@+id/fragmentImageInside"
+            android:icon="@drawable/ic__image"
+            android:title="@string/lbl_image" />
     </group>
 
     <group

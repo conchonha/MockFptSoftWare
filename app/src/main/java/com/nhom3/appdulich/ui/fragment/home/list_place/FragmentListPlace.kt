@@ -1,5 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home.list_place
 
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -7,6 +8,7 @@ import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
 import com.nhom3.appdulich.databinding.FragmentIngredientBinding
 import com.nhom3.appdulich.extension.listener
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.extension.setUpToolbar
 import com.nhom3.appdulich.ui.adapter.home.ingredient.BannerAdapter
 import com.nhom3.appdulich.ui.adapter.home.list_place.ListPlaceAdapter
@@ -83,6 +85,11 @@ class FragmentListPlace : BaseFragment<FragmentIngredientBinding>() {
         binding.recyclerPlace.apply {
             isNestedScrollingEnabled = false
             adapter = adapterListPlace
+            adapterListPlace.listener = { view, item, position ->
+                requireView().navigate(R.id.action_global_fragmentDetailPlace, Bundle().apply {
+                    putInt(Const.KEY_ID, item.id)
+                })
+            }
         }
 
         //viewpager
@@ -97,7 +104,9 @@ class FragmentListPlace : BaseFragment<FragmentIngredientBinding>() {
             })
 
             adapterBanner.listener = { view, item, position ->
-
+                requireView().navigate(R.id.action_global_fragmentDetailPlace, Bundle().apply {
+                    putInt(Const.KEY_ID, item.id)
+                })
             }
         }
     }

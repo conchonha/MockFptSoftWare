@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nhom3.appdulich.data.model.Place
 import com.nhom3.appdulich.databinding.ItemSearchBinding
+import javax.inject.Inject
+import javax.inject.Singleton
 
 val diffCallback = object : DiffUtil.ItemCallback<Place>() {
     override fun areItemsTheSame(oldItem: Place, newItem: Place): Boolean {
@@ -19,7 +21,10 @@ val diffCallback = object : DiffUtil.ItemCallback<Place>() {
 
 }
 
-class SearchAdapter : ListAdapter<Place, SearchAdapter.ViewHolder>(diffCallback) {
+@Singleton
+class SearchAdapter @Inject constructor() : ListAdapter<Place, SearchAdapter.ViewHolder>(diffCallback) {
+    var listener: ((Place)->Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemSearchBinding.inflate(
@@ -32,6 +37,9 @@ class SearchAdapter : ListAdapter<Place, SearchAdapter.ViewHolder>(diffCallback)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            listener?.invoke(getItem(position))
+        }
     }
 
     class ViewHolder(private val binding: ItemSearchBinding) :

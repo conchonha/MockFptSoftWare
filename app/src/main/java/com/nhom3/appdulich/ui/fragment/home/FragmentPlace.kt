@@ -29,19 +29,12 @@ class FragmentPlace : BaseFragment<FragmentPalceBinding>() {
     override fun getViewBinding() = FragmentPalceBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.dismissProgress()
-            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.showToast(it)
         }
 
         _viewModel.getMenuTop {
-            helpers.dismissProgress()
             it.observe(viewLifecycleOwner, {
-                helpers.dismissProgress()
                 adapterPlace.updateItems(it.toMutableList())
             })
         }

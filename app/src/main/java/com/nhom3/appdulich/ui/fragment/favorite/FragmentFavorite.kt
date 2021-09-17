@@ -12,12 +12,14 @@ import com.nhom3.appdulich.R
 import com.nhom3.appdulich.databinding.FragmentFavoriteBinding
 import com.nhom3.appdulich.ui.adapter.favorite.FavoritePlaceAdapter
 import com.nhom3.appdulich.viewmodel.FavoritePlaceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FragmentFavorite : Fragment(R.layout.fragment_favorite) {
-
     private val viewModel: FavoritePlaceViewModel by viewModels()
     private lateinit var binding: FragmentFavoriteBinding
     private val adapter = FavoritePlaceAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

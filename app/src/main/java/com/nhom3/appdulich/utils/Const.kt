@@ -1,7 +1,7 @@
 package com.nhom3.appdulich.utils
 
 object Const {
-    const val BASE_URL = "http://192.168.1.4/AppDuLichJavaAndroidLaravel/public/"
+    const val BASE_URL = "http://192.168.1.6/AppDuLichAndroidLaravel/public/"
     const val WEB_VIEW_URL = "https://www.ivivu.com/blog/category/viet-nam/da-nang/"
 
     const val KEY_EMAIL = "KEY_EMAIL"

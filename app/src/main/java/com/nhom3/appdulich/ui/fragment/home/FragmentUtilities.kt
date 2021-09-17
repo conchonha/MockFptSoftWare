@@ -3,7 +3,6 @@ package com.nhom3.appdulich.ui.fragment.home
 import android.os.Bundle
 import android.view.View.INVISIBLE
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -25,18 +24,12 @@ class FragmentUtilities : BaseFragment<FragmentHomeLayoutBinding>() {
     override fun getViewBinding() = FragmentHomeLayoutBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.dismissProgress()
-            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.showToast(it)
         }
 
         _viewModel.getDataMenuBottom {
-            helpers.dismissProgress()
-            it.observe(viewLifecycleOwner,{
+            it.observe(viewLifecycleOwner, {
                 adapterUtilities.updateItems(it.toMutableList())
             })
         }

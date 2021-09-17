@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.nhom3.appdulich.base.response.DataResponse
 import com.nhom3.appdulich.data.model.Place
 import com.nhom3.appdulich.repositories.PlaceRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SearchViewModel @Inject constructor(private val _placeRepository: PlaceRepository): ViewModel() {
     var showError: ((String) -> Unit)? = null
     private val _searchPlaces = MutableLiveData<List<Place>>()

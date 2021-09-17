@@ -38,13 +38,8 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
     override fun getViewBinding() = FragmentIngredientBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.dismissProgress()
-            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.showToast(it)
         }
 
         _id?.let { id ->
@@ -55,10 +50,7 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
                 })
             }
 
-            helpers.showProgressLoading(requireContext())
-
             _viewModel.getDataPlaceHomeRandom(id, 0) {
-                helpers.dismissProgress()
                 adapterBanner.updateItems(it.toMutableList())
                 binding.pageIndicatorViewBanner.count = adapterBanner.itemCount
             }
@@ -136,7 +128,11 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
             })
 
             adapterBanner.listener = { view, item, position ->
-
+                requireView().navigate(
+                    R.id.action_fragmentIngredient_to_fragmentDetailPlace,
+                    Bundle().apply {
+                        putInt(Const.KEY_ID, item.id)
+                    })
             }
         }
     }
@@ -152,11 +148,15 @@ class FragmentIngredient : BaseFragment<FragmentIngredientBinding>() {
             adapter = adapterInside
 
             adapterInside.listener = { view, item, position ->
+                requireView().navigate(
+                    R.id.action_fragmentIngredient_to_fragmentDetailPlace,
+                    Bundle().apply {
+                        putInt(Const.KEY_ID, item.id)
+                    })
             }
         }
 
         _viewModel.getDataPlaceHomeRandom(item.id!!, 1) {
-            helpers.dismissProgress()
             adapterInside.updateItems(it.toMutableList())
         }
     }

@@ -11,11 +11,11 @@ data class FavoritePlace(
     var id: Int,
 
     @ColumnInfo(name = "name_place")
-    var title: String,
+    var title: String? = null,
 
     @ColumnInfo(name = "introduce_place")
-    var introduce: String,
+    var introduce: String ? = null,
 
     @ColumnInfo(name = "image_place")
-    var image: String
+    var image: String? = null
 )

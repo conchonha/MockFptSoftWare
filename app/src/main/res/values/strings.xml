@@ -97,4 +97,5 @@
     <string name="lbl_overview">Overview</string>
     <string name="lbl_detail">Detail Place</string>
     <string name="name_place">name place</string>
+    <string name="lbl_save_local_success">Save favorite success</string>
 </resources>

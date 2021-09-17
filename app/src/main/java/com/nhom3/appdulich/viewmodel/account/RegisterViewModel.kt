@@ -28,9 +28,10 @@ class RegisterViewModel @Inject constructor(
     val password = MutableLiveData("")
 
     fun register(success: () -> Unit){
-        checkEmail {
-            registerAccount(success)
-        }
+//        checkEmail {
+//
+//        }
+        registerAccount(success)
     }
 
     private fun registerAccount(onSuccess: () -> Unit) = viewModelScope.launch {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View.*
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.ui.setupWithNavController
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -34,13 +33,8 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.dismissProgress()
-            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.showToast(it)
         }
 
         _viewModel.getAccount(onSuccess = {
@@ -52,8 +46,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         })
 
         _viewModel.getMenuTop {
-            helpers.dismissProgress()
-            it.observe(viewLifecycleOwner,{
+            it.observe(viewLifecycleOwner, {
                 menuAdapter.updateItems(it.toMutableList())
             })
         }

@@ -57,7 +57,13 @@
         android:id="@+id/fragmentMap"
         android:name="com.nhom3.appdulich.ui.fragment.map.FragmentMap"
         android:label="FragmentMap"
-        tools:layout="@layout/fragment_map"></fragment>
+        tools:layout="@layout/fragment_map">
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentMap_to_fragmentDetailPlace"
+            app:destination="@id/fragmentDetailPlace" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentMyProfile"
         android:name="com.nhom3.appdulich.ui.fragment.setting.FragmentMyProfile"
@@ -124,6 +130,11 @@
             app:destination="@id/fragmentListPlace"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            android:id="@+id/action_fragmentIngredient_to_fragmentDetailPlace"
+            app:destination="@id/fragmentDetailPlace" />
     </fragment>
     <fragment
         android:id="@+id/fragmentImageInside"
