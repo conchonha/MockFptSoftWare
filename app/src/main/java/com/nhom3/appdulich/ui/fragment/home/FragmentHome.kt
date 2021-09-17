@@ -34,13 +34,8 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.dismissProgress()
-            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.showToast(it)
         }
 
         _viewModel.getAccount(onSuccess = {
@@ -52,8 +47,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         })
 
         _viewModel.getMenuTop {
-            helpers.dismissProgress()
-            it.observe(viewLifecycleOwner,{
+            it.observe(viewLifecycleOwner, {
                 menuAdapter.updateItems(it.toMutableList())
             })
         }

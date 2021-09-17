@@ -1,13 +1,20 @@
 package com.nhom3.appdulich.core.room.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Query
-import com.nhom3.appdulich.core.room.BaseDao
-import com.nhom3.appdulich.data.model.Place
+import androidx.room.*
+import com.nhom3.appdulich.core.room.FavoritePlace
 
 @Dao
-interface PlaceDao : BaseDao<Place> {
-    @Query("select * from tb_place")
-    fun getAllPlace(): LiveData<List<Place>>
+interface PlaceDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(data: FavoritePlace)
+
+    @Query("select * from favorite_place")
+    fun getAllPlace(): LiveData<List<FavoritePlace>>
+
+    @Query("select * from favorite_place where name_place Like '%' || :namePlace || '%'")
+    fun searchPlaceByName(namePlace: String): LiveData<List<FavoritePlace>>
+
+    @Delete
+    suspend fun delete(data: FavoritePlace)
 }

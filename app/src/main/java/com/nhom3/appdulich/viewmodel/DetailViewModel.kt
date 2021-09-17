@@ -3,6 +3,7 @@ package com.nhom3.appdulich.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhom3.appdulich.base.response.DataResponse
+import com.nhom3.appdulich.core.room.FavoritePlace
 import com.nhom3.appdulich.data.response.DetailResponse
 import com.nhom3.appdulich.repositories.PlaceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val _placeRepository: PlaceRepository
+    private val _placeRepository: PlaceRepository,
 ) : ViewModel() {
     var showError: ((String) -> Unit)? = null
     var loadingDialog: (() -> Unit)? = null
@@ -23,5 +24,9 @@ class DetailViewModel @Inject constructor(
             is DataResponse.Success -> onSuccess(value.data)
             is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())
         }
+    }
+
+    fun insertPlace(place: FavoritePlace) = viewModelScope.launch{
+       _placeRepository.insertPlace(place)
     }
 }

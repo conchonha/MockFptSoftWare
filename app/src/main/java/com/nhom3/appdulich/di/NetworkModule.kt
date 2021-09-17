@@ -1,5 +1,6 @@
 package com.nhom3.appdulich.di
 
+import com.nhom3.appdulich.core.room.database.AppDatabase
 import com.nhom3.appdulich.core.service.ApiServices
 import com.nhom3.appdulich.repositories.AccountRepository
 import com.nhom3.appdulich.repositories.MenuRepository
@@ -58,7 +59,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providePlaceRepository(apiServices: ApiServices) = PlaceRepository(apiServices)
+    fun providePlaceRepository(apiServices: ApiServices, appDatabase: AppDatabase) =
+        PlaceRepository(apiServices, appDatabase.getFavoritePlaceDao())
 
     @Provides
     @Singleton

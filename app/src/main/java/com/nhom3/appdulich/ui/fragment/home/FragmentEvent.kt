@@ -1,7 +1,6 @@
 package com.nhom3.appdulich.ui.fragment.home
 
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.base.BaseFragment
@@ -21,18 +20,12 @@ class FragmentEvent : BaseFragment<FragmentHomeLayoutBinding>() {
     override fun getViewBinding() = FragmentHomeLayoutBinding.inflate(layoutInflater)
 
     override fun listenerViewModel() {
-        _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
-        }
-
         _viewModel.showError = {
-            helpers.dismissProgress()
-            helpers.showAlertDialog(msg = it, context = requireContext())
+            helpers.showToast(it)
         }
 
         _viewModel.getDataEventRanDom {
-            helpers.dismissProgress()
-            it.observe(viewLifecycleOwner,{
+            it.observe(viewLifecycleOwner, {
                 adapterEvent.updateItems(it.toMutableList())
             })
         }

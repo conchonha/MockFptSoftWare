@@ -28,9 +28,10 @@ class RegisterViewModel @Inject constructor(
     val password = MutableLiveData("")
 
     fun register(success: () -> Unit){
-        checkEmail {
-            registerAccount(success)
-        }
+//        checkEmail {
+//
+//        }
+        registerAccount(success)
     }
 
     private fun registerAccount(onSuccess: () -> Unit) = viewModelScope.launch {
@@ -48,7 +49,10 @@ class RegisterViewModel @Inject constructor(
                             _repository.saveAccount(value.data.data!!)
                             onSuccess()
                         }
-                        else -> showError?.invoke(value.data.message.toString())
+                        else -> {
+                            Log.d("AAA", "registerAccount: ${value.data.message.toString()}")
+                            showError?.invoke(value.data.message.toString())
+                        }
                     }
 
                 is DataResponse.Fail -> showError?.invoke(value.exception.message.toString())

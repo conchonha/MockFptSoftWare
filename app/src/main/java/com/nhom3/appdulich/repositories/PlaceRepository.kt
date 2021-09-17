@@ -1,10 +1,19 @@
 package com.nhom3.appdulich.repositories
 
 import com.nhom3.appdulich.base.BaseRepository
+import com.nhom3.appdulich.core.room.FavoritePlace
+import com.nhom3.appdulich.core.room.dao.PlaceDao
 import com.nhom3.appdulich.core.service.ApiServices
 import javax.inject.Inject
 
-class PlaceRepository @Inject constructor(private val _api : ApiServices) : BaseRepository(){
+class PlaceRepository @Inject constructor(
+    private val _api : ApiServices,
+    private val _dao: PlaceDao
+) : BaseRepository(){
+    suspend fun insertPlace(place: FavoritePlace) {
+        _dao.insert(place)
+    }
+
     suspend fun getDataPlaceFromIdMenu(idMenu : Int) = callData {
         _api.getDataPlaceFromIdMenu(idMenu)
     }
