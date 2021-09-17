@@ -30,11 +30,20 @@ class FragmentFavorite : Fragment(R.layout.fragment_favorite) {
     ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
 
-        binding.rvFavoritePlace.adapter = adapter
+        initView()
         getPlaceFromDB()
         eventSearch()
 
         return binding.root
+    }
+
+    private fun initView() {
+        binding.rvFavoritePlace.adapter = adapter
+        adapter.listener = {
+            BottomNavigation.navController.navigate(R.id.action_global_fragmentDetailPlace, Bundle().apply {
+                putInt(Const.KEY_ID, it.id)
+            })
+        }
     }
 
     private fun eventSearch() {
@@ -56,12 +65,6 @@ class FragmentFavorite : Fragment(R.layout.fragment_favorite) {
         viewModel.searchPlace(namePlace).observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
-
-        adapter.listener = {
-            BottomNavigation.navController.navigate(R.id.action_global_fragmentDetailPlace, Bundle().apply {
-                putInt(Const.KEY_ID, it.id)
-            })
-        }
     }
 
     private fun getPlaceFromDB() {

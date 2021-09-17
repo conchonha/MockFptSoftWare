@@ -25,12 +25,12 @@ class FragmentUpdateProfile : BaseFragment<FragmentUpdateProfileBinding>(), View
 
     override fun listenerViewModel() {
         _viewModel.showError = {
-            helpers.showAlertDialog(msg = it, context = requireContext())
-            helpers.dismissProgress()
+//            helpers.showAlertDialog(msg = it, context = requireContext())
+//            helpers.dismissProgress()
         }
 
         _viewModel.loadingDialog = {
-            helpers.showProgressLoading(requireContext())
+            //helpers.showProgressLoading(requireContext())
         }
     }
 

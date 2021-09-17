@@ -34,12 +34,12 @@ class FavoritePlaceAdapter: ListAdapter<FavoritePlace, FavoritePlaceAdapter.View
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        holder.itemView.setOnClickListener {
+        holder.binding.root.setOnClickListener {
             listener?.invoke(getItem(position))
         }
     }
 
-    class ViewHolder(private val binding: ItemFavoritePlaceBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder( val binding: ItemFavoritePlaceBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(place: FavoritePlace) {
             binding.favoritePlace = place
