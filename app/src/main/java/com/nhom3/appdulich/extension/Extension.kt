@@ -46,14 +46,14 @@ fun confirmPassword(editText: EditText, str: String) {
 @BindingAdapter("setTextMount")
 fun setTextMount(textView: TextView,str : String){
     val list = str.split("-")
-    textView.text = "TH ${list[1]}"
+    textView.text = "Month ${list[1]}"
 }
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("setTextDate")
 fun setTextDate(textView: TextView,str : String){
     val list = str.split("-")
-    textView.text = "TH ${list[2].substring(0,2)}"
+        textView.text = "Day ${list[2].substring(0,2)}"
 }
 
 fun View.navigate(action: Int, bundle: Bundle? = null) {

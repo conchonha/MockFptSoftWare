@@ -13,7 +13,7 @@
             android:id="@+id/toolbarFavorite"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/blue"
+            android:background="@color/colorPrimary"
             android:overScrollMode="always"
             app:title="Favorite "
             app:titleTextColor="#fff" />
@@ -35,8 +35,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#fff"
-                    android:gravity="center"
+                    android:paddingLeft="@dimen/_15dp"
                     android:hint="@string/name_place"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
                 <ImageView

@@ -12,7 +12,7 @@
         android:layout_height="@dimen/_200dp"
         android:scaleType="fitXY"
         app:riv_mutate_background="true"
-        android:background="@color/black"
+        android:background="@drawable/cachep"
         app:riv_corner_radius="@dimen/_100dp" />
 
     <TextView
@@ -24,7 +24,9 @@
 
     <TextView
         style="@style/TextContent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20dp"
+        android:textSize="@dimen/_30sp"
         android:text="@string/lbl_description_here"
         android:textColor="@color/white" />
 </LinearLayout>

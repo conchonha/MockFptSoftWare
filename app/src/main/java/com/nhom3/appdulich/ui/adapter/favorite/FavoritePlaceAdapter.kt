@@ -20,6 +20,8 @@ val diffCallback =object : DiffUtil.ItemCallback<FavoritePlace>() {
 
 }
 class FavoritePlaceAdapter: ListAdapter<FavoritePlace, FavoritePlaceAdapter.ViewHolder>(diffCallback) {
+    var listener: ((FavoritePlace)->Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemFavoritePlaceBinding.inflate(
@@ -32,6 +34,9 @@ class FavoritePlaceAdapter: ListAdapter<FavoritePlace, FavoritePlaceAdapter.View
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            listener?.invoke(getItem(position))
+        }
     }
 
     class ViewHolder(private val binding: ItemFavoritePlaceBinding) : RecyclerView.ViewHolder(binding.root) {

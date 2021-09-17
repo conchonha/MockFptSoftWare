@@ -31,7 +31,7 @@
                 android:layout_width="@dimen/_250dp"
                 android:layout_height="@dimen/_250dp"
                 android:layout_marginTop="@dimen/_24dp"
-                android:background="@color/black"
+                android:background="@drawable/f"
                 android:contentDescription="@string/lbl_logo"
                 android:scaleType="fitXY" />
 
@@ -45,7 +45,9 @@
             <TextView
                 style="@style/TextContent"
                 android:layout_marginTop="@dimen/_10dp"
-                android:text="@string/lbl_description_here_slide_3" />
+                android:fontFamily="casual"
+                android:text="@string/lbl_description_here_slide_3"
+                android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatButton
                 style="@style/Button"

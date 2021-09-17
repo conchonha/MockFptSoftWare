@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nhom3.appdulich.R
 import com.nhom3.appdulich.databinding.FragmentFavoriteBinding
+import com.nhom3.appdulich.extension.navigate
 import com.nhom3.appdulich.ui.adapter.favorite.FavoritePlaceAdapter
+import com.nhom3.appdulich.ui.fragment.bottom_navigation.BottomNavigation
+import com.nhom3.appdulich.utils.Const
 import com.nhom3.appdulich.viewmodel.FavoritePlaceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,6 +56,12 @@ class FragmentFavorite : Fragment(R.layout.fragment_favorite) {
         viewModel.searchPlace(namePlace).observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
+
+        adapter.listener = {
+            BottomNavigation.navController.navigate(R.id.action_global_fragmentDetailPlace, Bundle().apply {
+                putInt(Const.KEY_ID, it.id)
+            })
+        }
     }
 
     private fun getPlaceFromDB() {
